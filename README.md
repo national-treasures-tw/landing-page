@@ -1,5 +1,7 @@
-# 2017 TACEC-TANG-OTD Landing Page
+# Taiwan National Treasure Landing Page
 
+Mock up
+![alt text](image.png "Landing Page static")
 
 ## To set up and contribute
 - `git clone` this repo
