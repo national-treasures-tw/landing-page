@@ -46,6 +46,20 @@ class App extends React.Component {
     return (
       <div className={styles.box}>
         <img src={logo} className={styles.logo} />
+        <div className={styles.navBox}>
+          <div className={styles.navBoxItem} >
+            參與尋寶
+          </div>
+          <div className={styles.navBoxItem} >
+            寶藏庫
+          </div>
+          <div className={styles.navBoxItem} >
+            故事
+          </div>
+          <div className={styles.navBoxItem} >
+            聯絡我們
+          </div>
+        </div>
         <div className={styles.inputGroup}>
           <div style={{display: 'inline-flex'}}>
             {/*<input placeholder="join@nltr.tw" type="email" onChange={this.handleInput} value={this.state.inputValue} className={styles.emailInput} />

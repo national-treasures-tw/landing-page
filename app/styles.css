@@ -26,11 +26,10 @@ input[type=email] {
 .taiwan {
   position: absolute;
   top: 35px;
-  right: 20%;
+  right: 15%;
 }
 
 .logo {
-  position: absolute;
   margin-top: 53px;
   margin-left: 15px;
 }
@@ -76,4 +75,19 @@ input[type=email] {
 
 .ocrBox {
   width: 600px;
+}
+
+.navBox {
+  border-top: 3px solid #352D2A;
+  width: 68px;
+  padding-left: 131px;
+  text-align: right;
+  margin-left: -8px;
+  font-weight: 700;
+  color: #352D2A;
+  cursor: pointer;
+}
+
+.navBoxItem:hover {
+  border-bottom: 2px solid #352D2A;
 }
