@@ -26,12 +26,13 @@ input[type=email] {
 .taiwan {
   position: absolute;
   top: 35px;
-  right: -150px;
+  right: 20%;
 }
 
 .logo {
   position: absolute;
-  margin-top: 29%;
+  margin-top: 53px;
+  margin-left: 15px;
 }
 
 .inputGroup {

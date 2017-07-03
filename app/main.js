@@ -1,9 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import styles from './styles.css';
-import taiwan from './assets/taiwan.png';
-import logo from './assets/logo.png';
-import name from './assets/name.png';
+import hero from './assets/hero-img.png';
+import logo from './assets/hero-menu-logo.png';
 
 class App extends React.Component {
   constructor(props) {
@@ -48,14 +47,13 @@ class App extends React.Component {
       <div className={styles.box}>
         <img src={logo} className={styles.logo} />
         <div className={styles.inputGroup}>
-          <img src={name} className={styles.name} width={190} />
           <div style={{display: 'inline-flex'}}>
-            <input placeholder="join@nltr.tw" type="email" onChange={this.handleInput} value={this.state.inputValue} className={styles.emailInput} />
-            <div className={styles.button} onClick={this.handleSubmit}>Submit </div>
+            {/*<input placeholder="join@nltr.tw" type="email" onChange={this.handleInput} value={this.state.inputValue} className={styles.emailInput} />
+            <div className={styles.button} onClick={this.handleSubmit}>Submit </div>*/}
           </div>
           <p style={{color: '#D0011B'}}> {this.state.message} </p>
         </div>
-        <img src={taiwan} className={styles.taiwan} />
+        <img src={hero} className={styles.taiwan} />
       </div>
     );
   }
