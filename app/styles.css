@@ -99,6 +99,7 @@ input[type=email] {
   float: right;
   margin-top: 30px;
   width: 589px;
+  overflow: hidden;
 }
 
 .sectionTitle {
