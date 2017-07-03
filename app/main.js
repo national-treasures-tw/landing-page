@@ -6,9 +6,44 @@ import logo from './assets/logo.png';
 import name from './assets/name.png';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: '',
+      message: '',
+    };
+  }
+
+
+  handleInput = (e) => {
+    this.setState({
+      inputValue: e.target.value
+    });
+  }
+
+  handleSubmit = () => {
+    if (this.state.inputValue.includes('@')) {
+      axios.post('https://5bq2v7mgi5.execute-api.us-east-1.amazonaws.com/prod/mySimpleBE', {
+        "Item": {
+          timestamp: `${new Date().getTime()}`,
+          email: this.state.inputValue,
+        },
+        "TableName": 'TNT-Email'
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          this.setState({ inputValue: '', message: 'Thank you! We will be in touch!' })
+        }
+      })
+      .catch((err) => {
+        this.setState({ message: err.message });
+      })
+    } else {
+      this.setState({ message: 'Please enter a valid email!'});
+    }
+  }
+
   render() {
-    const { images, selected, isLoading, isDebugging } = this.state;
-    const gallery = images.sort((image1, image2) => image2.timestamp - image1.timestamp ).map((image, index) => image.key && <img onClick={() => this.handleSelect(index)} src={`https://s3.amazonaws.com/national-treasure/${image.key}`} className={styles.image} />);
     return (
       <div className={styles.box}>
         <img src={logo} className={styles.logo} />
