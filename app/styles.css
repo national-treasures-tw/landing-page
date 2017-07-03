@@ -102,6 +102,11 @@ input[type=email] {
   overflow: hidden;
 }
 
+.sectionLeft {
+  float: left;
+  display: flex;
+}
+
 .sectionTitle {
   font-size: 24px;
   width: 256px;

@@ -4,6 +4,7 @@ import styles from './styles.css';
 import hero from './assets/hero-img.png';
 import logo from './assets/hero-menu-logo.png';
 import doc1 from './assets/docs/doc1.png';
+import doc2 from './assets/docs/doc2.png';
 
 class App extends React.Component {
   constructor(props) {
@@ -73,6 +74,14 @@ class App extends React.Component {
           <h4 className={styles.sectionTitle}>歷史是屬於你我、屬於每一個人民的。</h4>
           <p>關於台灣過去的拼圖，散落在全世界的各個角落。我們需要把它們找出來、加以數位化，轉譯成為人人都可取用的開放資料與有意義的歷史故事；在拼湊這些線索的過程中，讓台灣人民得以認識自身的歷史與真相。</p>
           <img src={doc1} />
+        </div>
+        <div className={styles.sectionLeft}>
+          <img src={doc2} />
+          <div>
+            <h4 className={styles.sectionTitle}>為什麼是國家寶藏。</h4>
+            <p>包括英美等國家這一百多年以來對台灣社會、地理、人物所做下的情蒐紀錄，提供了台灣人在回顧自己的過去時，更豐富的材料與角度，以及不同的思維，去重新描繪台灣人曾經的生活面貌。
+  在這裡，我們希望將這些資料重新進入公眾視野內，結合每個人獨特的視角，去重新書寫出台灣人生活的故事。</p>
+          </div>
         </div>
       </div>
     );
