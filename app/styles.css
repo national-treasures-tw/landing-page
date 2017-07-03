@@ -1,0 +1,78 @@
+
+
+html {
+  background: url(./assets/background.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Inknut Antiqua', serif;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 16px;
+  color: #000;
+  padding-left: 10px;
+  font-family: 'Inknut Antiqua', serif;
+  opacity: 0.5;
+}
+
+input[type=email] {
+  font-size: 16px;
+  color: #000;
+  padding-left: 15px;
+  font-family: 'Inknut Antiqua', serif;
+}
+
+.taiwan {
+  position: absolute;
+  top: 35px;
+  right: -150px;
+}
+
+.logo {
+  position: absolute;
+  margin-top: 29%;
+}
+
+.inputGroup {
+  display: inline-grid;
+  margin-left: 17%;
+  margin-top: 30%;
+}
+
+.emailInput {
+  width: 400px;
+  height: 48px;
+  border: 2px solid #231815;
+}
+
+.button {
+  width: 110px;
+  height: 52px;
+  background-color: #231815;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  margin-left: 7px;
+  line-height: 50px;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.image {
+  width: 200px;
+  height: auto;
+  margin-left: 20px;
+  margin-top: 65px;
+  cursor: pointer;
+}
+
+.selectedImage {
+  composes: image;
+  margin-top: 40px;
+  width: 600px;
+}
+
+.ocrBox {
+  width: 600px;
+}

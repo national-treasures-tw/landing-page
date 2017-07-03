@@ -1,0 +1,6 @@
+#npm packages
+node_modules/
+npm-debug.log
+*.DS_Store
+# generated files
+build/bundle.js
