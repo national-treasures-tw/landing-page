@@ -26,7 +26,8 @@ input[type=email] {
 .taiwan {
   position: absolute;
   top: 35px;
-  right: 15%;
+  right: 23%;
+  z-index: -10;
 }
 
 .logo {
@@ -79,15 +80,28 @@ input[type=email] {
 
 .navBox {
   border-top: 3px solid #352D2A;
-  width: 68px;
+  width: 74px;
   padding-left: 131px;
   text-align: right;
   margin-left: -8px;
   font-weight: 700;
   color: #352D2A;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .navBoxItem:hover {
   border-bottom: 2px solid #352D2A;
+}
+
+.sectionRight {
+  z-index: 50;
+  float: right;
+  margin-top: 30px;
+  width: 589px;
+}
+
+.sectionTitle {
+  font-size: 24px;
+  width: 256px;
 }
