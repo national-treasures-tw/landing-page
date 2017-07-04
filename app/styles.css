@@ -103,11 +103,27 @@ input[type=email] {
 }
 
 .sectionLeft {
-  float: left;
+  position: absolute;
   display: flex;
+  width: 980px;
+  margin-top: 700px;
+}
+
+.doc2Img {
+  transform: rotate(-270deg);
+  margin-left: -285px;
 }
 
 .sectionTitle {
   font-size: 24px;
   width: 256px;
+}
+
+.sectionLeftContent {
+  margin-left: 120px;
+  margin-top: 35px;
+}
+
+.sectionItem {
+  width: 500px;
 }

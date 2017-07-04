@@ -76,11 +76,13 @@ class App extends React.Component {
           <img src={doc1} />
         </div>
         <div className={styles.sectionLeft}>
-          <img src={doc2} />
-          <div>
-            <h4 className={styles.sectionTitle}>為什麼是國家寶藏。</h4>
-            <p>包括英美等國家這一百多年以來對台灣社會、地理、人物所做下的情蒐紀錄，提供了台灣人在回顧自己的過去時，更豐富的材料與角度，以及不同的思維，去重新描繪台灣人曾經的生活面貌。
+          <img src={doc2} className={styles.doc2Img} />
+          <div className={styles.sectionLeftContent} >
+            <h4 className={styles.sectionTitle}>為什麼是國家寶藏？</h4>
+            <p className={styles.sectionItem} >包括英美等國家這一百多年以來對台灣社會、地理、人物所做下的情蒐紀錄，提供了台灣人在回顧自己的過去時，更豐富的材料與角度，以及不同的思維，去重新描繪台灣人曾經的生活面貌。
   在這裡，我們希望將這些資料重新進入公眾視野內，結合每個人獨特的視角，去重新書寫出台灣人生活的故事。</p>
+            <h4 className={styles.sectionTitle}>加入國家寶藏</h4>
+            <p>國家寶藏第一站是在美國首府(D.C.)外的國家檔案局 National Archives and Records Administration - NARA II。 只要攜帶你的photo ID與手機，下載國家寶藏App，就能入館進行資料翻拍。藉由我們的App，每一位志工翻拍的文件，都會自動進入國家寶藏資料庫建檔並文字化，方便民眾檢索瀏覽。</p>
           </div>
         </div>
       </div>
