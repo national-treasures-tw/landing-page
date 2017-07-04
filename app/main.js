@@ -87,10 +87,10 @@ class App extends React.Component {
           </div>
         </div>
 		<div className={styles.footer}>
-	     <p>Email: join@nltr.tw</p>
-		 <p>Facebook:fb.me/twnationaltreasure</p>
-		 <p>Web:nationaltreasure.tw</p>
-		 <p>Donate:請寄支票到 Taiwan National Treasure Foundation</p>
+	     <p>Email : join@nltr.tw</p>
+		 <p>Facebook : fb.me/twnationaltreasure</p>
+		 <p>Web : nationaltreasure.tw</p>
+		 <p>Donate : 請寄支票到 Taiwan National Treasure Foundation</p>
 		 <p>431 W.37st #9A New Work, NY 10018</p>
 		</div>
 		 
