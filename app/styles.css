@@ -117,11 +117,13 @@ input[type=email] {
 .sectionTitle {
   font-size: 24px;
   width: 256px;
+  font-family: PingFangTC-Medium;
 }
 
 .sectionLeftContent {
   margin-left: 120px;
   margin-top: 35px;
+  font-family: PingFangTC-Regular;
 }
 
 .sectionItem {
