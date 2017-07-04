@@ -6,6 +6,7 @@ import logo from './assets/hero-menu-logo.png';
 import doc1 from './assets/docs/doc1.png';
 import doc2 from './assets/docs/doc2.png';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -85,9 +86,18 @@ class App extends React.Component {
             <p>國家寶藏第一站是在美國首府(D.C.)外的國家檔案局 National Archives and Records Administration - NARA II。 只要攜帶你的photo ID與手機，下載國家寶藏App，就能入館進行資料翻拍。藉由我們的App，每一位志工翻拍的文件，都會自動進入國家寶藏資料庫建檔並文字化，方便民眾檢索瀏覽。</p>
           </div>
         </div>
+		<div className={styles.footer}>
+	     <p>Email: join@nltr.tw</p>
+		 <p>Facebook:fb.me/twnationaltreasure</p>
+		 <p>Web:nationaltreasure.tw</p>
+		 <p>Donate:請寄支票到 Taiwan National Treasure Foundation</p>
+		 <p>431 W.37st #9A New Work, NY 10018</p>
+		</div>
+		 
       </div>
+	  
     );
   }
 }
 
-render(<App />, document.getElementById('app'));
+render(<App footer= "I am the footer"/>, document.getElementById('app'));

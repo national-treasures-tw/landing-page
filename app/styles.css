@@ -58,7 +58,7 @@ input[type=email] {
   line-height: 50px;
   cursor: pointer;
   z-index: 200;
-}
+  }
 
 .image {
   width: 200px;
@@ -126,4 +126,14 @@ input[type=email] {
 
 .sectionItem {
   width: 500px;
+}
+.footer {
+  max-width:100%;
+  color: white;
+  background-color: #231815;
+  bottom: 100%;
+  positive : absolute;
+  margin-top: 1500px;
+  text-align: center;
+  line-height:20px;
 }
