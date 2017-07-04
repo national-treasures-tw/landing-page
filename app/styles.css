@@ -60,16 +60,21 @@ input[type=email] {
   z-index: 200;
 }
 
-.buttonBrown {
-  width: 110px;
+.btnBrown {
+  width: auto;
   height: 52px;
   background-color: #6B4E3D;
   color: white;
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
-  line-height: 52px;
+  margin-left: 24px;
   cursor: pointer;
   z-index: 200;
+}
+
+.btnBrownLeft {
+  composes: btnBrown;
+  margin-left: 0px;
 }
 
 .image {

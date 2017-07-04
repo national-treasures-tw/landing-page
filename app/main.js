@@ -84,9 +84,9 @@ class App extends React.Component {
             <h4 className={styles.sectionTitle}>加入國家寶藏</h4>
             <p>國家寶藏第一站是在美國首府(D.C.)外的國家檔案局 National Archives and Records Administration - NARA II。 只要攜帶你的photo ID與手機，下載國家寶藏App，就能入館進行資料翻拍。藉由我們的App，每一位志工翻拍的文件，都會自動進入國家寶藏資料庫建檔並文字化，方便民眾檢索瀏覽。</p>
             <div>
-              <button className={styles.buttonBrown} >想知道更多？</button>
-              <button className={styles.buttonBrown} >想追蹤動態？</button>
-              <button className={styles.buttonBrown} >無法親自參與翻拍嗎？</button>
+              <button className={styles.btnBrownLeft} >想知道更多？</button>
+              <button className={styles.btnBrown} >想追蹤動態？</button>
+              <button className={styles.btnBrown} >無法親自參與翻拍嗎？</button>
             </div>
           </div>
         </div>
