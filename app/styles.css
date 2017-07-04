@@ -100,6 +100,7 @@ input[type=email] {
   margin-top: 30px;
   width: 589px;
   overflow: hidden;
+  line-height: 24px;
 }
 
 .sectionLeft {
@@ -118,6 +119,7 @@ input[type=email] {
   font-size: 24px;
   width: 256px;
   font-family: PingFangTC-Medium;
+  line-height: 37px;
 }
 
 .sectionLeftContent {
@@ -127,5 +129,5 @@ input[type=email] {
 }
 
 .sectionItem {
-  width: 500px;
+  width: 467px;
 }
