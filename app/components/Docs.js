@@ -20,17 +20,19 @@ export default class Docs extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.startLoading();
+  }
+
   startLoading = () => {
     this.setState({ isLoading: true });
-    setInterval(() => {
-      this.getMoreImages()
-      .then((res) => {
-        if (res.data.length != this.state.images.length) {
-          this.setState({ isLoading: false });
-        }
-        this.setState({ images: res.data });
-      })
-    }, 1500)
+    this.getMoreImages()
+    .then((res) => {
+      if (res.data.length != this.state.images.length) {
+        this.setState({ isLoading: false });
+      }
+      this.setState({ images: res.data });
+    })
   }
 
   getMoreImages = () => {
@@ -126,14 +128,13 @@ export default class Docs extends React.Component {
           </div>
         ) : (
           <div>
-            <input type="file" ref={(e) => { this.uploadbox = e; }} onChange={this.handleFile} />
+            {/* <input type="file" ref={(e) => { this.uploadbox = e; }} onChange={this.handleFile} /> */}
             <div style={{ width: '100%' }}>
               {isLoading && <img src={loader} width={200} height={200} />}
               {gallery}
             </div>
           </div>
         )}
-        { images.length > 0 || <button onClick={this.startLoading} > 查看文件 </button> }
       </div>
     );
   }

@@ -16,6 +16,7 @@ html {
   opacity: 0.5;
 }
 
+
 input[type=email] {
   font-size: 16px;
   color: #000;
@@ -33,6 +34,10 @@ input[type=email] {
 .logo {
   margin-top: 53px;
   margin-left: 15px;
+}
+
+.mobileLogo {
+  display: none;
 }
 
 .inputGroup {
@@ -60,6 +65,34 @@ input[type=email] {
   z-index: 200;
 }
 
+.btnBrown {
+  width: auto;
+  height: 52px;
+  background-color: #6B4E3D;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  margin-left: 24px;
+  cursor: pointer;
+  z-index: 200;
+  border-width: 0;
+  padding-left: 21px;
+  padding-right: 21px;
+}
+
+.btnBrownLeft {
+  composes: btnBrown;
+  margin-left: 0px;
+}
+
+.btnBrownRight {
+  composes: btnBrown;
+}
+
+.buttonGroup {
+  margin-top: 23px;
+}
+
 .image {
   width: 200px;
   height: auto;
@@ -79,7 +112,7 @@ input[type=email] {
 }
 
 .navBox {
-  border-top: 3px solid #352D2A;
+  border-top: 4px solid #352D2A;
   width: 74px;
   padding-left: 131px;
   text-align: right;
@@ -110,6 +143,10 @@ input[type=email] {
   margin-top: 700px;
 }
 
+.doc1Img {
+  margin-left: 0;
+}
+
 .doc2Img {
   transform: rotate(-270deg);
   margin-left: -285px;
@@ -122,12 +159,133 @@ input[type=email] {
   line-height: 37px;
 }
 
+.sectionTitle2 {
+  composes: sectionTitle;
+  margin-top: 102px;
+}
+
 .sectionLeftContent {
   margin-left: 120px;
-  margin-top: 35px;
+  margin-top: 55px;
   font-family: PingFangTC-Regular;
 }
 
 .sectionItem {
+  line-height: 28px;
+}
+
+.sectionItemNarrow {
+  composes: sectionItem;
   width: 467px;
+}
+
+.sectionLeftUSA {
+  position: absolute;
+  display: flex;
+  top: 1940px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.sectionLeftContent2 {
+  width: 1102px;
+  height: 523px;
+  background-color: #FFFFFF;
+  opacity: 0.6;
+  font-family: PingFangTC-Regular;
+  margin-left: -230px;
+  margin-top: 65px;
+}
+
+.usaImg {
+  z-index: 100;
+  height: 503px;
+}
+
+.innerContent {
+  margin-left: 257px;
+  margin-top: 52px;
+  width: 700px;
+}
+
+@media (max-width: 1346px) and (min-width: 1024px) {
+  .doc1Img {
+    margin-left: 50%;
+  }
+}
+
+@media (max-width: 414px) {
+  .doc1Img {
+    display: none;
+  }
+  .doc2Img {
+    display: none;
+  }
+  .logo {
+    display: none;
+  }
+  .navBox {
+    margin-left: 51%;
+    padding-left: 40px;
+    width: 100px;
+    margin-right: 29px;
+  }
+  .mobileLogo {
+    display: block;
+    margin-left: 44%;
+    margin-top: 23px;
+    margin-right: 29px;
+    margin-bottom: 5px;
+  }
+  .taiwan {
+    width: 370px;
+    margin-top: 81px;
+  }
+
+  .sectionRight{
+    float: none;
+    width: 90%;
+    margin-top: 150px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .sectionLeft {
+    position: relative;
+    display: block;
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .sectionLeftContent {
+    margin-left: 0;
+    margin-top: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .sectionItemNarrow {
+    width: 100%;
+  }
+
+  .sectionTitle2{
+    margin-top: 0;
+  }
+
+  .sectionLeftUSA {
+    position: relative;
+    display: block;
+    top: 0;
+  }
+
+  .usaImg {
+    width: 300px;
+    height: 214px;
+    margin-top: 30px;
+  }
+
+  .btnBrownRight {
+    margin-left: 0;
+    margin-top: 20px;
+  }
 }
