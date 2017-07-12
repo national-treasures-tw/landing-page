@@ -7,6 +7,8 @@ import logo from '../assets/hero-menu-logo.png';
 import mobileLogo from '../assets/mobile-menu-logo.png';
 import doc1 from '../assets/docs/doc1.png';
 import doc2 from '../assets/docs/doc2.png';
+import doc3 from '../assets/docs/doc3.png';
+import fish from '../assets/docs/fish.png';
 import usaImg from '../assets/location-usa.png';
 
 export default class Landing extends React.Component {
@@ -100,13 +102,35 @@ export default class Landing extends React.Component {
           <img src={usaImg} className={styles.usaImg} />
           <div className={styles.sectionLeftContent2} >
               <div className={styles.innerContent} >
-              <h4 className={styles.sectionTitle}>目前開團的尋寶點</h4>
-              <p className={styles.sectionItem} >
+              <h4 className={styles.sectionTitleUSA}>目前開團的尋寶點</h4>
+              <p className={styles.sectionItemUSA} >
                 - National Archives and Records Administration (Washington D.C.) <br />
                 - United Nations Archives (New York City) <br />
                 - (暫定）Hoover Institution, Library & Archives (Stanford University) <br />
               </p>
+              <div className={styles.buttonGroup} >
+                <button className={styles.btnBrownLeft}>提供尋寶情報</button>
               </div>
+              <h4 className={styles.sectionTitleUSA}>近期活動</h4>
+              <p className={styles.sectionItemGroups} >
+                7/5 NARA 採寶團 >> JOIN!
+              </p>
+              <p className={styles.sectionItemGroups} >
+                8/10 UN 採寶團 >> JOIN!
+              </p>
+              </div>
+          </div>
+        </div>
+        <div className={styles.gallerySection}>
+          <img src={doc3} className={styles.doc3Img} />
+          <img src={fish} className={styles.fishImg} />
+          <div className={styles.footer}>
+            <div className={styles.footerContent}>
+              <div>Email：join@nltr.tw</div>
+              <div>Facebook：fb.me/twnationaltreasure</div>
+              <div>Web：nationaltreasure.tw</div>
+              <div>Donate：請寄支票到 Taiwan National Treasure Foundation 431 W. 37st #9A New York, NY 10018</div>
+            </div>
           </div>
         </div>
       </div>

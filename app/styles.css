@@ -152,6 +152,16 @@ input[type=email] {
   margin-left: -285px;
 }
 
+.doc3Img {
+  z-index: -100;
+  position: absolute;
+  left: 80%;
+}
+
+.fishImg {
+  margin-top: 250px;
+}
+
 .sectionTitle {
   font-size: 24px;
   width: 256px;
@@ -174,6 +184,21 @@ input[type=email] {
   line-height: 28px;
 }
 
+.sectionItemUSA {
+  composes: sectionItem;
+}
+
+.sectionItemGroups {
+  composes: sectionItem;
+  border: 2px solid #352D2B;
+  border-radius: 2px;
+  width: 384px;
+  height: 43px;
+  font-size: 24px;
+  line-height: 42px;
+  padding-left: 5px;
+}
+
 .sectionItemNarrow {
   composes: sectionItem;
   width: 467px;
@@ -190,8 +215,7 @@ input[type=email] {
 .sectionLeftContent2 {
   width: 1102px;
   height: 523px;
-  background-color: #FFFFFF;
-  opacity: 0.6;
+  background-color: rgba(255, 255, 255, 0.6);
   font-family: PingFangTC-Regular;
   margin-left: -230px;
   margin-top: 65px;
@@ -206,6 +230,33 @@ input[type=email] {
   margin-left: 257px;
   margin-top: 52px;
   width: 700px;
+}
+
+.gallerySection {
+  position: absolute;
+  top: 2400px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: -70px;
+  left: 0;
+  padding: 1rem;
+  background-color: #352D2A;
+  color: #FFFFFF;
+  text-align: center;
+  font-family: PingFangTC-Regular;
+  font-size: 18px;
+  padding-top: 60px;
+  padding-bottom: 144px;
+}
+
+.footerContent {
+  width: 508px;
+  margin-left: 35%;
 }
 
 @media (max-width: 1346px) and (min-width: 1024px) {
@@ -276,16 +327,57 @@ input[type=email] {
     position: relative;
     display: block;
     top: 0;
+    overflow: inherit;
   }
 
   .usaImg {
     width: 300px;
     height: 214px;
     margin-top: 30px;
+    position: absolute;
+    top: -130px;
+  }
+
+  .sectionTitle {
+    font-size: 18px;
+  }
+
+  .sectionTitleUSA {
+    composes: sectionTitle;
+  }
+
+  .btnBrown{
+    font-size: 15px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
 
   .btnBrownRight {
     margin-left: 0;
     margin-top: 20px;
+  }
+
+  .sectionLeftContent2 {
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-top: 130px;
+    width: 105%;
+    margin-left: -10px;
+  }
+
+  .innerContent {
+    margin-left: 0px;
+    margin-top: 0px;
+    width: 100%;
+    padding-top: 129px;
+    text-align: center;
+  }
+
+  .sectionTitleUSA {
+    margin-left: 10%;
+  }
+
+  .sectionItemUSA {
+    width: 261px;
+    margin-left: 10%;
   }
 }
