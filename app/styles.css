@@ -16,6 +16,21 @@ html {
   opacity: 0.5;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
 
 input[type=email] {
   font-size: 16px;
@@ -27,13 +42,13 @@ input[type=email] {
 .taiwan {
   position: absolute;
   top: 35px;
-  right: 23%;
+  right: 17%;
   z-index: -10;
 }
 
 .logo {
   margin-top: 53px;
-  margin-left: 15px;
+  margin-left: 125px;
 }
 
 .mobileLogo {
@@ -85,6 +100,10 @@ input[type=email] {
   margin-left: 0px;
 }
 
+.btnBrownInfo {
+  composes: btnBrownLeft;
+}
+
 .btnBrownRight {
   composes: btnBrown;
 }
@@ -116,7 +135,7 @@ input[type=email] {
   width: 74px;
   padding-left: 131px;
   text-align: right;
-  margin-left: -8px;
+  margin-left: 96px;
   font-weight: 700;
   color: #352D2A;
   cursor: pointer;
@@ -130,8 +149,8 @@ input[type=email] {
 .sectionRight {
   z-index: 50;
   float: right;
-  margin-top: 30px;
-  width: 589px;
+  margin-top: 50px;
+  width: 549px;
   overflow: hidden;
   line-height: 24px;
 }
@@ -208,7 +227,7 @@ input[type=email] {
   position: absolute;
   display: flex;
   top: 1940px;
-  width: 100%;
+  width: 99%;
   overflow: hidden;
 }
 
@@ -235,7 +254,7 @@ input[type=email] {
 .gallerySection {
   position: absolute;
   top: 2400px;
-  width: 100%;
+  width: 99%;
   overflow: hidden;
 }
 
@@ -256,7 +275,7 @@ input[type=email] {
 
 .footerContent {
   width: 508px;
-  margin-left: 35%;
+  margin-left: 33%;
 }
 
 @media (max-width: 1346px) and (min-width: 1024px) {
@@ -272,6 +291,13 @@ input[type=email] {
   .doc2Img {
     display: none;
   }
+  .doc3Img {
+    display: none;
+  }
+  .fishImg {
+    display: none;
+  }
+
   .logo {
     display: none;
   }
@@ -357,11 +383,16 @@ input[type=email] {
     margin-top: 20px;
   }
 
+  .btnBrownInfo {
+    display: none;
+  }
+
   .sectionLeftContent2 {
     background-color: rgba(255, 255, 255, 0.9);
     margin-top: 130px;
     width: 105%;
     margin-left: -10px;
+    height: 665px;
   }
 
   .innerContent {
@@ -376,8 +407,35 @@ input[type=email] {
     margin-left: 10%;
   }
 
+  .sectionLeftUSA {
+    width: 100%;
+  }
+
   .sectionItemUSA {
     width: 261px;
     margin-left: 10%;
+  }
+
+  .sectionItemGroups {
+    width: 273px;
+    font-size: 18px;
+    margin-left: 10%;
+  }
+
+  .gallerySection {
+    overflow: inherit;
+    top: 2500px;
+    margin-left: -8px;
+    width: 100%;
+  }
+
+  .footer {
+    padding-bottom: 70px;
+    font-size: 14px;
+  }
+
+  .footerContent {
+    width: 243px;
+    margin-left: 15%;
   }
 }

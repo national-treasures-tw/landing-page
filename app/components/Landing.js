@@ -59,9 +59,7 @@ export default class Landing extends React.Component {
             參與尋寶
           </div>
           <div className={styles.navBoxItem} >
-            <Link to="/documents">
             寶藏庫
-            </Link>
           </div>
           <div className={styles.navBoxItem} >
             故事
@@ -109,7 +107,7 @@ export default class Landing extends React.Component {
                 - (暫定）Hoover Institution, Library & Archives (Stanford University) <br />
               </p>
               <div className={styles.buttonGroup} >
-                <button className={styles.btnBrownLeft}>提供尋寶情報</button>
+                <button className={styles.btnBrownInfo}>提供尋寶情報</button>
               </div>
               <h4 className={styles.sectionTitleUSA}>近期活動</h4>
               <p className={styles.sectionItemGroups} >
