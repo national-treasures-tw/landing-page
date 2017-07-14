@@ -310,12 +310,14 @@ input[type=email] {
   margin-left: 33%;
 }
 
+/* Larger desktop */
 @media (max-width: 1346px) and (min-width: 1024px) {
   .doc1Img {
     margin-left: 50%;
   }
 }
 
+/* phone protrait */
 @media (max-width: 414px) {
   .doc1Img {
     display: none;
@@ -469,5 +471,9 @@ input[type=email] {
   .footerContent {
     width: 243px;
     margin-left: 15%;
+  }
+
+  .navBar {
+    display: none;
   }
 }
