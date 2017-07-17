@@ -10,6 +10,7 @@ import doc1 from '../assets/docs/doc1.png';
 import doc2 from '../assets/docs/doc2.png';
 import doc3 from '../assets/docs/doc3.png';
 import fish from '../assets/docs/fish.png';
+import poweredBy from '../assets/poweredby.png';
 import usaImg from '../assets/location-usa.png';
 
 export default class Landing extends React.Component {
@@ -70,15 +71,21 @@ export default class Landing extends React.Component {
     }
     return (
       <div className={styles.box}>
+        <div className={styles.landingBox} />
+        <div className={styles.lowerLandingBox} />
         <div className={styles.navBar} style={{ opacity: easing(481, 560) }}>
           <img src={navLogo} className={styles.navLogo} />
           <div className={styles.navHeader}>
-            <div className={styles.navHeaderItem} >
-              參與尋寶
-            </div>
-            <div className={styles.navHeaderItem} >
-              寶藏庫
-            </div>
+            <Link to="/participants">
+              <div className={styles.navHeaderItem} >
+                參與尋寶
+              </div>
+            </Link>
+            <Link to="/documents">
+              <div className={styles.navHeaderItem} >
+                寶藏庫
+              </div>
+            </Link>
             <div className={styles.navHeaderItem} >
               故事
             </div>
@@ -90,12 +97,16 @@ export default class Landing extends React.Component {
         <img src={logo} className={styles.logo} />
         <img src={mobileLogo} className={styles.mobileLogo} />
         <div className={styles.navBox}>
-          <div className={styles.navBoxItem} >
-            參與尋寶
-          </div>
-          <div className={styles.navBoxItem} >
-            寶藏庫
-          </div>
+          <Link to="/participants">
+            <div className={styles.navBoxItem} >
+              參與尋寶
+            </div>
+          </Link>
+          <Link to="/documents">
+            <div className={styles.navBoxItem} >
+              寶藏庫
+            </div>
+          </Link>
           <div className={styles.navBoxItem} >
             故事
           </div>
@@ -159,10 +170,13 @@ export default class Landing extends React.Component {
           <img src={fish} className={styles.fishImg} />
           <div className={styles.footer}>
             <div className={styles.footerContent}>
-              <div>Email：join@nltr.tw</div>
-              <div>Facebook：fb.me/twnationaltreasure</div>
-              <div>Web：nationaltreasure.tw</div>
-              <div>Donate：請寄支票到 Taiwan National Treasure Foundation 431 W. 37st #9A New York, NY 10018</div>
+              <a href="https://grants.g0v.tw/power" target="_blank"><img src={poweredBy} className={styles.poweredBy} /> </a>
+              <div className={styles.footerInfo}>
+                <div>Email：join@nltr.tw</div>
+                <div>Facebook：fb.me/twnationaltreasure</div>
+                <div>Web：nationaltreasure.tw</div>
+                <div>Donate：請寄支票到 Taiwan National Treasure Foundation 431 W. 37st #9A New York, NY 10018</div>
+              </div>
             </div>
           </div>
         </div>

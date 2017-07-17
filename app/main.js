@@ -2,14 +2,17 @@ import React from 'react';
 import { render } from 'react-dom';
 import Landing from './components/Landing';
 import Docs from './components/Docs';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import Participants from './components/Participants';
+import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
 
 class App extends React.Component {
   render() {
+    const isProduction = process.env.production === 'production';
     return (
-      <Router history={browserHistory} >
+      <Router history={isProduction ? browserHistory : hashHistory} >
         <Route path="/" component={Landing} />
         <Route path="/documents" component={Docs} />
+        <Route path="/participants" component={Participants} />
       </Router>
     );
   }
