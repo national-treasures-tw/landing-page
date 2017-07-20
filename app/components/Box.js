@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { Link } from 'react-router';
+import NavHeader from './NavHeader';
+import FooterContent from './FooterContent';
 import styles from '../styles.css';
 import background from '../assets/participants/background-2.png';
 import logo from '../assets/hero-menu-logo.png';
 import mobileLogo from '../assets/mobile-menu-logo.png';
-import navLogo from '../assets/nav-logo.png';
 import badge3 from '../assets/participants/badge-3.png';
 import poweredBy from '../assets/poweredby.png';
 
@@ -25,23 +25,7 @@ export default class Landing extends React.Component {
         <div className={styles.triangle}>
           <p className={styles.triangleContent}>寶藏庫</p>
         </div>
-        <div className={styles.navBar}>
-          <img src={navLogo} className={styles.navLogo} />
-          <div className={styles.navHeader}>
-            <div className={styles.navHeaderItem} >
-              參與尋寶
-            </div>
-            <div className={styles.navHeaderItem} >
-              寶藏庫
-            </div>
-            <div className={styles.navHeaderItem} >
-              故事
-            </div>
-            <div className={styles.navHeaderItem} >
-              聯絡我們
-            </div>
-          </div>
-        </div>
+        <NavHeader />
         <img src={background} className={styles.backgroundHeroTreasure} />
         <div className={styles.treasureBody}>
           <img src={badge3} className={styles.treasureBadge} />
@@ -156,15 +140,7 @@ export default class Landing extends React.Component {
           </div>
         </div>
         <div className={styles.generalFooter}>
-          <div className={styles.footerContent}>
-            <a href="https://grants.g0v.tw/power" target="_blank"><img src={poweredBy} className={styles.poweredBy} /> </a>
-            <div className={styles.footerInfo}>
-              <div>Email：join@nltr.tw</div>
-              <div>Facebook：fb.me/twnationaltreasure</div>
-              <div>Web：nationaltreasure.tw</div>
-              <div>Donate：請寄支票到 <br /> Taiwan National Treasure Foundation 431 W. 37st #9A New York, NY 10018</div>
-            </div>
-          </div>
+          <FooterContent />
         </div>
       </div>
     );

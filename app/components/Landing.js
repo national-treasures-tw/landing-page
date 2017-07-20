@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import NavHeader from './NavHeader';
 import { Link } from 'react-router';
 import styles from '../styles.css';
 import hero from '../assets/hero-img.png';
@@ -12,6 +12,7 @@ import doc3 from '../assets/docs/doc3.png';
 import fish from '../assets/docs/fish.png';
 import poweredBy from '../assets/poweredby.png';
 import usaImg from '../assets/location-usa.png';
+import { easing } from '../helpers/math';
 
 export default class Landing extends React.Component {
   constructor(props) {
@@ -61,39 +62,11 @@ export default class Landing extends React.Component {
 
   render() {
     const { scrollTop } = this.state;
-    const easing = (startPosition, endPosition) => {
-      if (startPosition > endPosition || scrollTop > endPosition) {
-        return 1;
-      } else if (scrollTop < startPosition) {
-        return 0;
-      }
-      return 1 - ((endPosition - scrollTop) / (endPosition - startPosition));
-    }
     return (
       <div>
         <div className={styles.landingBox} />
         <div className={styles.lowerLandingBox} />
-        <div className={styles.navBar} style={{ opacity: easing(481, 560) }}>
-          <img src={navLogo} className={styles.navLogo} />
-          <div className={styles.navHeader}>
-            <Link to="/participants">
-              <div className={styles.navHeaderItem} >
-                參與尋寶
-              </div>
-            </Link>
-            <Link to="/documents">
-              <div className={styles.navHeaderItem} >
-                寶藏庫
-              </div>
-            </Link>
-            <div className={styles.navHeaderItem} >
-              故事
-            </div>
-            <div className={styles.navHeaderItem} >
-              聯絡我們
-            </div>
-          </div>
-        </div>
+        <NavHeader isLanding scrollTop={scrollTop} />
         <img src={logo} className={styles.logo} />
         <img src={mobileLogo} className={styles.mobileLogo} />
         <div className={styles.navBox}>
@@ -102,7 +75,7 @@ export default class Landing extends React.Component {
               參與尋寶
             </div>
           </Link>
-          <Link to="/documents">
+          <Link to="/treasure">
             <div className={styles.navBoxItem} >
               寶藏庫
             </div>
@@ -125,10 +98,10 @@ export default class Landing extends React.Component {
         <div className={styles.sectionRight}>
           <h4 className={styles.sectionTitle}>歷史是屬於你我、屬於每一個人民的。</h4>
           <p className={styles.sectionItem}>關於台灣過去的拼圖，散落在全世界的各個角落。我們需要把它們找出來、加以數位化，轉譯成為人人都可取用的開放資料與有意義的歷史故事；在拼湊這些線索的過程中，讓台灣人民得以認識自身的歷史與真相。</p>
-          <img src={doc1} className={styles.doc1Img} style={{ opacity: easing(0, 600) - 0.2, /* marginTop: 100 * (1 - easing(0, 600)) */ }} />
+          <img src={doc1} className={styles.doc1Img} style={{ opacity: easing(0, 600, scrollTop) - 0.2, /* marginTop: 100 * (1 - easing(0, 600)) */ }} />
         </div>
         <div className={styles.sectionLeft}>
-          <img src={doc2} className={styles.doc2Img} style={{ opacity: easing(461, 968) - 0.2 }} />
+          <img src={doc2} className={styles.doc2Img} style={{ opacity: easing(461, 968, scrollTop) - 0.2 }} />
           <div className={styles.sectionLeftContent} >
             <h4 className={styles.sectionTitle}>為什麼是國家寶藏？</h4>
             <p className={styles.sectionItemNarrow} >包括英美等國家這一百多年以來對台灣社會、地理、人物所做下的情蒐紀錄，提供了台灣人在回顧自己的過去時，更豐富的材料與角度，以及不同的思維，去重新描繪台灣人曾經的生活面貌。
@@ -166,7 +139,7 @@ export default class Landing extends React.Component {
           </div>
         </div>
         <div className={styles.gallerySection}>
-          <img src={doc3} className={styles.doc3Img} style={{ opacity: easing(1600, 2100) - 0.2 }} />
+          <img src={doc3} className={styles.doc3Img} style={{ opacity: easing(1600, 2100, scrollTop) - 0.2 }} />
           <img src={fish} className={styles.fishImg} />
           <div className={styles.footer}>
             <div className={styles.footerContent}>

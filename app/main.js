@@ -14,7 +14,7 @@ class App extends React.Component {
         <Route path="/" component={Landing} />
         <Route path="/documents" component={Docs} />
         <Route path="/participants" component={Participants} />
-        <Route path="/treasures" component={Box} />
+        <Route path="/treasure" component={Box} />
       </Router>
     );
   }
