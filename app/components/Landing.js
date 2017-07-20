@@ -70,7 +70,7 @@ export default class Landing extends React.Component {
       return 1 - ((endPosition - scrollTop) / (endPosition - startPosition));
     }
     return (
-      <div className={styles.box}>
+      <div>
         <div className={styles.landingBox} />
         <div className={styles.lowerLandingBox} />
         <div className={styles.navBar} style={{ opacity: easing(481, 560) }}>

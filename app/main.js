@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import Landing from './components/Landing';
 import Docs from './components/Docs';
 import Participants from './components/Participants';
+import Box from './components/Box';
 import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
 
 class App extends React.Component {
@@ -13,6 +14,7 @@ class App extends React.Component {
         <Route path="/" component={Landing} />
         <Route path="/documents" component={Docs} />
         <Route path="/participants" component={Participants} />
+        <Route path="/treasures" component={Box} />
       </Router>
     );
   }

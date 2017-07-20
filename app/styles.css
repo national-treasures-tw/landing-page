@@ -319,11 +319,7 @@ input[type=email] {
   overflow: hidden;
 }
 
-.footer {
-  position: absolute;
-  right: 0;
-  bottom: -70px;
-  left: 0;
+.generalFooter {
   padding: 1rem;
   background-color: #352D2A;
   color: #FFFFFF;
@@ -331,6 +327,15 @@ input[type=email] {
   font-family: PingFangTC-Regular;
   font-size: 18px;
   padding-top: 60px;
+  padding-bottom: 74px;
+}
+
+.footer {
+  composes: generalFooter;
+  bottom: -70px;
+  position: absolute;
+  right: 0;
+  left: 0;
   padding-bottom: 144px;
 }
 
@@ -345,27 +350,23 @@ input[type=email] {
   padding-top: 15px;
 }
 
+
 /* Participants Page */
 
 .box {
   width: 100%;
-  height: 100vh;
   background: url(./assets/background.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  z-index: -500;
-  position: absolute;
-  top: 0;
-  left: 0;
+  z-index: -100;
 }
 
 .backgroundHero {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -10;
 }
 
 .triangle {
@@ -420,27 +421,208 @@ input[type=email] {
 
 .teamBoxBadge {
   position: relative;
-  top: -98px;
+  top: -76px;
   left: 82px;
+  width: 154px;
 }
 
 .teamBoxItemContent {
-  margin-top: -100px;
+  margin-top: -115px;
   width: 300px;
   margin-left: 35px;
 }
 
 .teamBoxItemTitle {
   text-align: center;
-  font-family: SourceHanSansTW-Bold;
   font-size: 32px;
-  color: #A01E40;
   letter-spacing: 4.44px;
   line-height: 37px;
+  margin-bottom: 22px;
+}
+
+.teamBoxItemTitle1 {
+  composes: teamBoxItemTitle;
+  color: #A01E40;
+}
+
+.teamBoxItemTitle2 {
+  composes: teamBoxItemTitle;
+  color: #1C615C;
+}
+
+.teamBoxItemTitle3 {
+  composes: teamBoxItemTitle;
+  color: #004892;
+}
+
+.teamBoxBody {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 28px;
+  color: #170000;
+  text-align: center;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.team1Subtitle {
+  color: #A01E40;
+}
+
+.team2Subtitle {
+  color: #1C615C;
+}
+
+.team3Subtitle {
+  color: #004892;
+}
+
+.teamBoxButton {
+  width: 147px;
+  height: 52px;
+  background-color: #6B4E3D;
+  color: white;
+  font-size: 18px;
+  border: none;
+  position: relative;
+  bottom: -48px;
+  left: 75px;
+  cursor: pointer;
+}
+
+.teamBoxButton3 {
+  composes: teamBoxButton;
+  bottom: -76px;
+}
+
+.contentBody {
+  width: 90%;
+  background-color: rgba(55,19,28,0.74);
+  margin-top: 500px;
+  margin-left: 10vh;
+  margin-bottom: 50px;
+}
+
+.bodyBadge {
+  composes: teamBoxBadge;
+  left: 43%;
+}
+
+.bodyTitle {
+  composes: teamBoxItemTitle;
+  font-size: 36px;
+  color: #FFFFFF;
+  line-height: 37px;
+  margin-top: -80px;
+  font-weight: 300;
+}
+
+.bodyArchiveInfo {
+  background: rgba(55,19,28,0.74);
+  margin-top: 110px;
+  color: #FFFFFF;
+  font-weight: 300;
+}
+
+.bodyArchiveInfoContent {
+  display: flex;
+  margin-left: 36px;
+  margin-top: -45px;
+  padding-bottom: 36px;
+}
+
+.bodyArchiveInfoContentItem {
+  width: 45%;
+  padding-left: 36px;
+}
+
+.bodyArchiveInfoContentItemTitle {
+  font-size: 18px;
+  line-height: 29px;
+}
+
+.bodyArchiveInfoContentItemTitle1 {
+  composes: bodyArchiveInfoContentItemTitle;
+  border-bottom: 1px solid #FFFFFF;
+  width: 130px;
+}
+
+.bodyArchiveInfoContentItemBody {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 100;
+}
+
+.archiveLogo {
+  composes: teamBoxBadge;
+  top: -45px;
+  left: 0;
+  display: flex;
+  height: 139px;
+  padding-left: 70px;
+}
+
+.logos {
+  width: 139px;
+  cursor: pointer;
+  opacity: 0.75;
+  margin-right: 4%;
+}
+
+.logos:hover {
+  opacity: 1;
+}
+
+.bodyTitle2 {
+  composes: bodyTitle;
+  margin-top: 50px;
 }
 
 /* End Participants Page */
 
+/* Treasure Page */
+
+.treasureBox {
+  composes: box;
+  position: absolute;
+}
+
+.backgroundHeroTreasure {
+  composes: backgroundHero;
+  z-index: -10;
+}
+
+.treasureBody {
+  width: 90%;
+  margin-left: 10vh;
+  margin-top: 360px;
+  background-color: #352d2a;
+  opacity: 0.8;
+  margin-bottom: 93px;
+}
+
+.treasureBadge {
+  composes: teamBoxBadge;
+}
+
+.treasureControls {
+  height: 140px;
+  border-bottom: 1px solid white;
+}
+
+.treasureContainer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 48px;
+  padding-right: 0;
+}
+
+.docItem {
+  width: 210px;
+  margin-right: 33px;
+}
+
+/* End Treasure Page */
 
 /* Larger desktop */
 @media (max-width: 1346px) and (min-width: 1024px) {
