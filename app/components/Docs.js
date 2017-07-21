@@ -72,7 +72,8 @@ export default class Docs extends React.Component {
         'https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload',
         { file: base64Img,
           email: 'user@nltr.tw',
-          naId: '1742009',
+          docId: '1742010',
+          location: 'nara',
           recordGroup: '469',
           entry: 'UD409',
           stack: '250',
@@ -115,20 +116,20 @@ export default class Docs extends React.Component {
 
   render() {
     const { images, selected, isLoading, isDebugging } = this.state;
-    const gallery = images.sort((image1, image2) => image2.timestamp - image1.timestamp ).map((image, index) => image.key && <img onClick={() => this.handleSelect(index)} src={`https://s3.amazonaws.com/national-treasure/${image.key}`} className={styles.image} />);
+    const gallery = images.sort((image1, image2) => image2.timestamp - image1.timestamp ).map((image, index) => image.smallUrl && <img onClick={() => this.handleSelect(index)} src={image.smallUrl} className={styles.image} />);
     return (
       <div className={styles.box}>
         {selected !== null ? (
           <div>
             <span onClick={() => this.setState({ selected: null })} style={{ cursor: 'pointer', color: '#D0011B' }}>BACK</span>
-            <img src={`https://s3.amazonaws.com/national-treasure/${images[selected].key}`} className={styles.selectedImage} />
+            <img src={images[selected].largeUrl} className={styles.selectedImage} />
             {!isDebugging && (images[selected].ocr[0] ? <div className={styles.ocrBox}>{images[selected].ocr[0]}</div> : <img src={loader} width={100} height={100} />)}
             {isDebugging && <textarea style={{ width: 600, height: 300}} defaultValue={images[selected].ocr[0]} /> }
             <button onClick={this.handleDebugOCR}> {isDebugging ? '提交' : '除錯' } </button>
           </div>
         ) : (
           <div>
-            {/* <input type="file" ref={(e) => { this.uploadbox = e; }} onChange={this.handleFile} /> */}
+            <input type="file" ref={(e) => { this.uploadbox = e; }} onChange={this.handleFile} />
             <div style={{ width: '100%' }}>
               {isLoading && <img src={loader} width={200} height={200} />}
               {gallery}

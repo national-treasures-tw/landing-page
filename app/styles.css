@@ -23,6 +23,7 @@ a:visited {
 
 a:-webkit-any-link {
   text-decoration: none;
+      color: #352D2A;
 }
 
 a:active {
