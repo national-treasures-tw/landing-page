@@ -73,16 +73,20 @@ export default class Docs extends React.Component {
         { file: base64Img,
           email: 'user@nltr.tw',
           docId: '1742010',
-          location: 'nara',
-          recordGroup: '469',
-          entry: 'UD409',
-          stack: '250',
-          row: '075',
-          compartment: '035',
-          shelf: '02-07',
-          box: '1-127',
-          containerId: '14',
-          title: 'China and Taiwan Subject Files, 1948 - 1961 Record Group 469: Records of U.S. Foreign Assistance Agencies, 1942 - 1963',
+          location: 'localUpload',
+          userId: 'some-userid',
+          dispatchId: 'some-dispatchId',
+          meta: {
+            recordGroup: '469',
+            entry: 'UD409',
+            stack: '250',
+            row: '075',
+            compartment: '035',
+            shelf: '02-07',
+            box: '1-127',
+            containerId: '14',
+            title: 'China and Taiwan Subject Files, 1948 - 1961 Record Group 469: Records of U.S. Foreign Assistance Agencies, 1942 - 1963',
+          },
           timestamp: new Date().getTime(),
         },
         { headers: { 'Content-Type': 'application/json' } })
@@ -116,15 +120,16 @@ export default class Docs extends React.Component {
 
   render() {
     const { images, selected, isLoading, isDebugging } = this.state;
-    const gallery = images.sort((image1, image2) => image2.timestamp - image1.timestamp ).map((image, index) => image.smallUrl && <img onClick={() => this.handleSelect(index)} src={image.smallUrl} className={styles.image} />);
+    const gallery = images.sort((image1, image2) => image2.timestamp - image1.timestamp ).map((image, index) => (image.smallUrl || image.resizedUrls.smallUrl) && <img key={index} onClick={() => this.handleSelect(index)} src={image.smallUrl || image.resizedUrls.smallUrl} className={styles.image} />);
     return (
       <div className={styles.box}>
         {selected !== null ? (
           <div>
             <span onClick={() => this.setState({ selected: null })} style={{ cursor: 'pointer', color: '#D0011B' }}>BACK</span>
-            <img src={images[selected].largeUrl} className={styles.selectedImage} />
+            <img src={images[selected].largeUrl || images[selected].resizedUrls.largeUrl} className={styles.selectedImage} />
             {!isDebugging && (images[selected].ocr[0] ? <div className={styles.ocrBox}>{images[selected].ocr[0]}</div> : <img src={loader} width={100} height={100} />)}
             {isDebugging && <textarea style={{ width: 600, height: 300}} defaultValue={images[selected].ocr[0]} /> }
+            <div className={styles.ocrBox}>{images[selected].translate[0]}</div>
             <button onClick={this.handleDebugOCR}> {isDebugging ? '提交' : '除錯' } </button>
           </div>
         ) : (
