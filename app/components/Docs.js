@@ -25,6 +25,12 @@ class Docs extends React.Component {
     if (!treasureBox.selectedDocs[uid]) {
       getSingleDoc(uid);
     }
+
+    document.addEventListener("keydown", this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyDown);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,6 +39,22 @@ class Docs extends React.Component {
 
     if (params.documentId !== this.props.params.documentId) {
       this.props.getSingleDoc(uid);
+    }
+  }
+
+  handleKeyDown = (event) => {
+    const { params, treasureBox } = this.props;
+    const docIndex = params.documentId.split('@')[1];
+    let lastDocUid;
+    if (docIndex !== '0') {
+      lastDocUid = treasureBox.documents[+docIndex - 1] && treasureBox.documents[+docIndex - 1].uid;
+    }
+
+    const nextDocUid = treasureBox.documents[+docIndex + 1] && treasureBox.documents[+docIndex + 1].uid;
+    if (event.key === 'ArrowRight' && nextDocUid) {
+      this.props.history.push(`/documents/${nextDocUid}@${+docIndex + 1}`)
+    } else if (event.key === 'ArrowLeft' && lastDocUid) {
+      this.props.history.push(`/documents/${lastDocUid}@${+docIndex - 1}`)
     }
   }
 
