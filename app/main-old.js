@@ -150,3 +150,117 @@ class App extends React.Component {
 }
 
 render(<App />, document.getElementById('app'));
+
+/* Parking space for old Docs.js
+
+constructor(props) {
+  super(props);
+  this.state = {
+    inputValue: '',
+    message: '',
+    images: [],
+    selected: null,
+    isLoading: false,
+    isDebugging: false,
+  };
+}
+
+componentDidMount() {
+  this.startLoading();
+}
+
+startLoading = () => {
+  this.setState({ isLoading: true });
+  this.getMoreImages()
+  .then((res) => {
+    if (res.data.length != this.state.images.length) {
+      this.setState({ isLoading: false });
+    }
+    this.setState({ images: res.data });
+  })
+}
+
+getMoreImages = () => {
+  return axios.get('https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload');
+}
+
+handleInput = (e) => {
+  this.setState({
+    inputValue: e.target.value
+  });
+}
+
+handleSubmit = () => {
+  if (this.state.inputValue.includes('@')) {
+    axios.post('https://5bq2v7mgi5.execute-api.us-east-1.amazonaws.com/prod/mySimpleBE', {
+      "Item": {
+        timestamp: `${new Date().getTime()}`,
+        email: this.state.inputValue,
+      },
+      "TableName": 'TNT-Email'
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        this.setState({ inputValue: '', message: 'Thank you! We will be in touch!' })
+      }
+    })
+    .catch((err) => {
+      this.setState({ message: err.message });
+    })
+  } else {
+    this.setState({ message: 'Please enter a valid email!'});
+  }
+}
+
+newImageUpload = ({ base64Img }) => {
+    axios.post(
+      'https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload',
+      { file: base64Img,
+        email: 'user@nltr.tw',
+        docId: '1742010',
+        location: 'localUpload',
+        userId: 'some-userid',
+        dispatchId: 'some-dispatchId',
+        meta: {
+          recordGroup: '469',
+          entry: 'UD409',
+          stack: '250',
+          row: '075',
+          compartment: '035',
+          shelf: '02-07',
+          box: '1-127',
+          containerId: '14',
+          title: 'China and Taiwan Subject Files, 1948 - 1961 Record Group 469: Records of U.S. Foreign Assistance Agencies, 1942 - 1963',
+        },
+        timestamp: new Date().getTime(),
+      },
+      { headers: { 'Content-Type': 'application/json' } })
+    .then((res) => {
+      console.log('success')
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+handleFile = (e) => {
+  this.setState({ isLoading: true });
+  const reader = new FileReader();
+  const file = e.target.files[0];
+  reader.onload = () => {
+    const imgData = { base64Img: reader.result };
+    this.newImageUpload(imgData);
+  };
+
+  reader.readAsDataURL(file);
+}
+
+handleSelect = (index) => {
+  this.setState({ selected: index });
+}
+
+handleDebugOCR = () => {
+  this.setState({ isDebugging: !this.state.isDebugging });
+}
+
+*/
