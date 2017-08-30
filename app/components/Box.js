@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import * as actions from '../actions/documents';
 import NavHeader from './NavHeader';
 import FooterContent from './FooterContent';
@@ -11,7 +12,7 @@ import mobileLogo from '../assets/mobile-menu-logo.png';
 import badge3 from '../assets/participants/badge-3.png';
 import poweredBy from '../assets/poweredby.png';
 
-const primaryTagGroup = ['中美斷交', '美援', '電影放映資料', '廣播問卷', '台北州（Taihoku）美國領事館資料', '台北州（Taihoku）美國領事館資料 戰後領事館重新運作'];
+const primaryTagGroup = ['中美斷交', '聯合國', '美援', '電影放映資料', '廣播問卷', '台北州（Taihoku）美國領事館資料', '台北州（Taihoku）美國領事館資料 戰後領事館重新運作'];
 
 class Box extends React.Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class Box extends React.Component {
     })
     .then((res) => {
       // this.setState({ images: this.state.images.filter(e => e.uid !== uid )})
+      console.log('success')
     })
     .catch((err) => alert(err.message))
   }
@@ -58,7 +60,12 @@ class Box extends React.Component {
 
   handleSwitchTag = (tag) => {
     this.setState({ showDropdown: false, selectedTag: tag });
-    this.props.loadDocs(tag, true);
+    this.props.loadDocs(tag, null, true);
+  }
+
+  handleLoadMoreDocs = () => {
+    const { treasureBox } = this.props;
+    this.props.loadDocs(treasureBox.lastKey.primaryTag, encodeURI(JSON.stringify(treasureBox.lastKey)));
   }
 
   render() {
@@ -103,8 +110,14 @@ class Box extends React.Component {
             )}
           </div>
           <div className={styles.treasureContainer}>
-            {gallery}
+             {gallery}
           </div>
+          {treasureBox.isFetching && (
+            <div style={{ marginBottom: 150 }} className={styles.loader} >
+              <div className={styles.loaderContent} />
+            </div> )
+          }
+          {treasureBox.lastKey && <button className={styles.loadMoreButton} onClick={this.handleLoadMoreDocs}>載入更多</button>}
         </div>
         <div className={styles.generalFooter}>
           <FooterContent />

@@ -581,6 +581,52 @@ input[type=email] {
 
 /* End Participants Page */
 
+/* Loader */
+@keyframes loader {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loader {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.loader {
+  position: relative;
+}
+.loaderContent {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  border: 6px solid #000;
+  border-color: #FFF transparent #FFF transparent;
+  -webkit-animation: lds-dual-ring 3s linear infinite;
+  animation: loader 1s linear infinite;
+}
+.loader {
+  width: 200px !important;
+  height: 200px !important;
+  -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  margin-left: 40%;
+  margin-top: 35px;
+}
+
+
 /* Treasure Page */
 
 .treasureBox {
@@ -596,7 +642,7 @@ input[type=email] {
 .treasureBody {
   width: 90%;
   margin-left: 10vh;
-  margin-top: 360px;
+  margin-top: 260px;
   background-color: #352d2a;
   opacity: 0.8;
   margin-bottom: 93px;
@@ -607,7 +653,8 @@ input[type=email] {
 }
 
 .treasureControls {
-  height: 140px;
+  height: 120px;
+  margin-top: -45px;
   border-bottom: 1px solid white;
   padding-left: 48px;
   color: #FFF;
@@ -675,6 +722,19 @@ input[type=email] {
   margin-right: 33px;
 }
 
+.loadMoreButton {
+  margin-left: 45%;
+  width: 220px;
+  height: 60px;
+  font-size: 18px;
+  color: #fff;
+  background-color: transparent;
+  text-align: center;
+  border: 2px solid white;
+  margin-bottom: 65px;
+  cursor: pointer;
+}
+
 /* End Treasure Page */
 
 
@@ -694,10 +754,10 @@ input[type=email] {
 }
 
 .docInfoBox {
-  height: 240px;
+  height: 176px;
   border-bottom: 1px solid #6b4e3d;
-  padding-bottom: 38px;
-  padding-top: 45px;
+  padding-bottom: 12px;
+  padding-top: 24px;
   color: #1b1715;
   font-size: 16px;
   width: 83%;
@@ -738,13 +798,39 @@ input[type=email] {
   margin-bottom: 72px;
 }
 
+.tagBoxLabel {
+  font-size: 18px;
+}
+
 .tagBox {
   width: 100%;
   composes: docPageBorder;
-  height: 54px;
+  height: 49px;
   margin-top: 18px;
   margin-bottom: 18px;
   padding: 13px;
+  padding-top: 0;
+  overflow: scroll;
+}
+
+.tagBoxContent {
+  display: flex;
+  list-style: none;
+  padding-left: 13px;
+}
+
+.tagBoxItem {
+  width: 78px;
+  height: 28px;
+  border: 1px solid #979797;
+  border-radius: 28px;
+  line-height: 28px;
+  background-color: white;
+  font-size: 12px;
+  text-align: center;
+  margin-right: 14px;
+  overflow-x: scroll;
+  font-family: 'Roboto', sans-serif;
 }
 
 .ocrControls {
@@ -753,6 +839,7 @@ input[type=email] {
   composes: docPageBorder;
   font-size: 16px;
   display: flex;
+  margin-top: 35px;
 }
 
 .ocrControlItem {
@@ -791,6 +878,7 @@ input[type=email] {
   overflow: scroll;
   text-align: left;
   line-height: 28px;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* End Document Page */

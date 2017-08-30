@@ -28,6 +28,10 @@ export default class Landing extends React.Component {
      window.addEventListener('scroll', this.handleScroll);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
   handleScroll = () => {
     this.setState({ scrollTop: document.body.scrollTop || document.documentElement.scrollTop });
   }

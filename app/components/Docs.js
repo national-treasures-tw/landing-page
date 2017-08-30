@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 import * as actions from '../actions/documents';
 import axios from 'axios';
@@ -75,6 +76,18 @@ class Docs extends React.Component {
 
     const nextDocUid = treasureBox.documents[+docIndex + 1] && treasureBox.documents[+docIndex + 1].uid;
 
+    const enTags = data.nlpEn && data.nlpEn[0].entities.map(e => (
+      <li className={styles.tagBoxItem} key={e.name + e.salience}>
+        {e.name}
+      </li>
+    ));
+
+    const zhTags = data.nlpZh && data.nlpZh[0].entities.map(e => (
+      <li className={styles.tagBoxItem} key={e.name + e.salience}>
+        {e.name}
+      </li>
+    ));
+
     return (
       <div className={styles.treasureBox}>
         <div className={styles.triangle}>
@@ -98,26 +111,28 @@ class Docs extends React.Component {
             <div className={styles.docImgFrame}>
               <img src={data.resizedUrls && data.resizedUrls.largeUrl} className={styles.docImg} />
               <div className={styles.lowerRightButtonGroup}>
-                <button className={styles.lowerRightButton}>下載圖檔</button>
-                <button className={styles.lowerRightButton}>Love 12</button>
+                <button className={styles.lowerRightButton}><FontAwesome name='download' /> 下載圖檔</button>
+                <button className={styles.lowerRightButton}><FontAwesome name='heart' /> 12</button>
               </div>
               {lastDocUid &&
                 <Link to={`/documents/${lastDocUid}@${+docIndex - 1}`}>
-                  <button className={styles.lowerRightButton}>上一張</button>
+                  <button className={styles.lowerRightButton}><FontAwesome name='chevron-left' /> 上一張</button>
                 </Link>
               }
               {nextDocUid &&
                 <Link to={`/documents/${nextDocUid}@${+docIndex + 1}`}>
-                  <button className={styles.lowerRightButton}>下一張</button>
+                  <button className={styles.lowerRightButton}>下一張 <FontAwesome name='chevron-right' /></button>
                 </Link>
               }
           </div>
             <div className={styles.docDataBox}>
-              <div>
-                標籤:
+              <div className={styles.tagBoxLabel}>
+                標籤：
               </div>
               <div className={styles.tagBox}>
-                一堆標籤
+                <ul style={{ width: enTags && 78 * enTags.length + 100}} className={styles.tagBoxContent}>
+                  {data.ocr && (ocrMode === 'En' ? enTags : zhTags)}
+                </ul>
               </div>
               <div className={styles.ocrControls}>
                 <div

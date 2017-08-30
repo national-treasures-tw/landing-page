@@ -34,14 +34,14 @@ const receiveSingleDoc = (data) => ({
   data
 });
 
-export const loadDocs = (tag, isReloadingDocs) => {
+export const loadDocs = (tag, lastKey, isReloadingDocs) => {
   return (dispatch) => {
     // requesting docs...
     if (isReloadingDocs) {
       dispatch(emptyCachedDocs())
     }
     dispatch(requestDocs());
-    return axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?tag=${tag || ''}`)
+    return axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?tag=${tag || ''}${lastKey ? `&lastKey=${lastKey}` : ''}`)
     .then((res) => {
       if (res.data && res.data.Items) {
         dispatch(receiveDocs(res.data.Items, res.data.LastEvaluatedKey));

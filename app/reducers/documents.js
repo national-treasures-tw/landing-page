@@ -15,7 +15,7 @@ const documentReducer = (state = initialState, action) => {
     case LOAD_DOCS_REQUEST:
       return { ...state, isFetching: true };
     case LOAD_DOCS_SUCCESS:
-      return { ...state, isFetching: false, documents: [...action.documents], lastKey: action.lastKey };
+      return { ...state, isFetching: false, documents: [ ...state.documents, ...action.documents], lastKey: action.lastKey };
     case LOAD_DOCS_ERROR:
       return { ...state, isFetching: false, errorMessage: action.message };
     case LOAD_SINGLE_DOC_REQUEST:
