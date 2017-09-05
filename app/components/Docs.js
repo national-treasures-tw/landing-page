@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import * as actions from '../actions/documents';
 import axios from 'axios';
 import NavHeader from './NavHeader';
@@ -35,12 +36,23 @@ class Docs extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { params } = nextProps;
+    const { params, treasureBox } = nextProps;
     const uid = params.documentId.split('@')[0];
+    const { documents } = this.props.treasureBox;
 
     if (params.documentId !== this.props.params.documentId) {
       this.props.getSingleDoc(uid);
     }
+
+    if (!!treasureBox.selectedDocs[uid] && !this.props.treasureBox.selectedDocs[uid]) {
+      const tag = treasureBox.selectedDocs[uid].primaryTag;
+      this.props.selectTag(tag);
+
+      if (treasureBox.documents.findIndex(e => e.uid === uid) === -1) {
+        this.props.hydrateDocs(uid, tag, treasureBox);
+      }
+    }
+
   }
 
   handleKeyDown = (event) => {
@@ -76,13 +88,15 @@ class Docs extends React.Component {
 
     const nextDocUid = treasureBox.documents[+docIndex + 1] && treasureBox.documents[+docIndex + 1].uid;
 
-    const enTags = data.nlpEn && data.nlpEn[0].entities.map(e => (
+    const enTags = (data.nlpEn && data.nlpEn.length > 0)  && _.uniqBy(data.nlpEn[0].entities, 'name').slice(0, 12).filter(e => e.name !== 'DECLASSIFIED' && e.name !== 'Authority' && e.name !== 'DECLASSIFIED Authority')
+    .map(e => (
       <li className={styles.tagBoxItem} key={e.name + e.salience}>
         {e.name}
       </li>
     ));
 
-    const zhTags = data.nlpZh && data.nlpZh[0].entities.map(e => (
+    const zhTags = (data.nlpZh && data.nlpZh.length > 0) && _.uniqBy(data.nlpZh[0].entities, 'name').slice(0, 12).filter(e => e.name !== '解密' && e.name !== '權威' && e.name !== '解密權威')
+    .map(e => (
       <li className={styles.tagBoxItem} key={e.name + e.salience}>
         {e.name}
       </li>

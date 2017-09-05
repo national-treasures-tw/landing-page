@@ -22,8 +22,7 @@ class Box extends React.Component {
       isLoading: false,
       isDebugging: false,
       scrollTop: 0,
-      showDropdown: false,
-      selectedTag: '中美斷交'
+      showDropdown: false
     };
   }
 
@@ -59,24 +58,24 @@ class Box extends React.Component {
   }
 
   handleSwitchTag = (tag) => {
-    this.setState({ showDropdown: false, selectedTag: tag });
+    this.setState({ showDropdown: false });
+    this.props.selectTag(tag);
     this.props.loadDocs(tag, null, true);
   }
 
   handleLoadMoreDocs = () => {
     const { treasureBox } = this.props;
-    this.props.loadDocs(treasureBox.lastKey.primaryTag, encodeURI(JSON.stringify(treasureBox.lastKey)));
+    this.props.loadDocs(treasureBox.lastKey.primaryTag, treasureBox.lastKey);
   }
 
   render() {
     const { treasureBox } = this.props;
-    const { selected, isLoading, selectedTag, showDropdown } = this.state;
+    const { selected, isLoading, showDropdown } = this.state;
     const images = treasureBox.documents;
 
     const gallery = images.length > 0 ? images.map((image, index) => (image.resizedUrls && image.resizedUrls.smallUrl) && (
       <div key={image.uid}>
         <Link to={`/documents/${image.uid}@${index}`}><img src={image.resizedUrls.smallUrl} className={styles.docItem} style={image.resizedUrls.toBeRotatedBy ? { transform: `rotate(${image.resizedUrls.toBeRotatedBy}deg)` } : {}} /></Link>
-        <p>{(image.nlpEn && image.nlpEn.length > 0 && image.nlpEn[0].entities) ? image.nlpEn[0].entities.slice(0,1).map(e => `${e.name}, `) : 'tags'}</p>
         {/*<button onClick={() => this.handleDelete(image.uid)}>DELETE</button>
            <button onClick={() => this.handleRotate(image.uid)}>ROTATE</button>*/}
     </div>
@@ -99,7 +98,7 @@ class Box extends React.Component {
           <img src={badge3} className={styles.treasureBadge} />
           <div className={styles.treasureControls}>
             <div className={styles.firstCategoryControl} onClick={this.handleDropdown}>
-              <div>分類: {truncateString(selectedTag)}</div> <div className={styles.treasureControlTriangle}></div>
+              <div>分類: {truncateString(treasureBox.selectedTag)}</div> <div className={styles.treasureControlTriangle}></div>
             </div>
             {showDropdown && (
               <div className={styles.firstCategoryDropdown}>

@@ -1,13 +1,15 @@
 import {
   LOAD_DOCS_REQUEST, LOAD_DOCS_SUCCESS, LOAD_DOCS_ERROR, EMPTY_DOCS,
-  LOAD_SINGLE_DOC_REQUEST, LOAD_SINGLE_DOC_SUCCESS, LOAD_SINGLE_DOC_ERROR
+  LOAD_SINGLE_DOC_REQUEST, LOAD_SINGLE_DOC_SUCCESS, LOAD_SINGLE_DOC_ERROR,
+  SELECT_TAG,
 } from '../constants/actionTypes';
 
 
 const initialState = {
   isFetching: false,
   documents: [],
-  selectedDocs: {}
+  selectedDocs: {},
+  selectedTag: '中美斷交'
 };
 
 const documentReducer = (state = initialState, action) => {
@@ -26,6 +28,8 @@ const documentReducer = (state = initialState, action) => {
       return { ...state, isFetching: false, errorMessage: action.message };
     case EMPTY_DOCS:
       return { ...state, documents: [] };
+    case SELECT_TAG:
+      return { ...state, selectedTag: action.tag };
     default:
       return state;
   }

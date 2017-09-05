@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
   LOAD_DOCS_REQUEST, LOAD_DOCS_SUCCESS, LOAD_DOCS_ERROR, EMPTY_DOCS,
-  LOAD_SINGLE_DOC_REQUEST, LOAD_SINGLE_DOC_SUCCESS, LOAD_SINGLE_DOC_ERROR
+  LOAD_SINGLE_DOC_REQUEST, LOAD_SINGLE_DOC_SUCCESS, LOAD_SINGLE_DOC_ERROR,
+  SELECT_TAG,
 } from '../constants/actionTypes';
 
 
@@ -34,6 +35,36 @@ const receiveSingleDoc = (data) => ({
   data
 });
 
+export const selectTag = (tag) => ({
+  type: SELECT_TAG,
+  tag
+});
+
+export const hydrateDocs = (uid, tag, treasureBox) => {
+  const getDocs = (tag, docs, lastKey, dispatch) => axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?tag=${tag || ''}${lastKey ? `&lastKey=${encodeURI(JSON.stringify(lastKey))}` : ''}`)
+    .then((res) => {
+      if (res.data && res.data.Items) {
+        const newDocs = [...docs, ...res.data.Items];
+        const newLastkey = res.data.LastEvaluatedKey;
+
+        if (res.data.Items.findIndex(e => e.uid === uid) === -1) {
+          return getDocs(tag, newDocs, newLastkey, dispatch);
+        } else {
+          dispatch(receiveDocs(newDocs, newLastkey));
+        }
+      } else {
+        dispatch(loadDocsError('No documents received'))
+      }
+    })
+
+
+  return (dispatch) => {
+    dispatch(requestDocs());
+
+    return getDocs(tag, [], null, dispatch);
+  }
+}
+
 export const loadDocs = (tag, lastKey, isReloadingDocs) => {
   return (dispatch) => {
     // requesting docs...
@@ -41,7 +72,7 @@ export const loadDocs = (tag, lastKey, isReloadingDocs) => {
       dispatch(emptyCachedDocs())
     }
     dispatch(requestDocs());
-    return axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?tag=${tag || ''}${lastKey ? `&lastKey=${lastKey}` : ''}`)
+    return axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?tag=${tag || ''}${lastKey ? `&lastKey=${encodeURI(JSON.stringify(lastKey))}` : ''}`)
     .then((res) => {
       if (res.data && res.data.Items) {
         dispatch(receiveDocs(res.data.Items, res.data.LastEvaluatedKey));

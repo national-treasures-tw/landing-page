@@ -773,6 +773,7 @@ input[type=email] {
   margin-top: 36px;
   width: 40%;
   height: auto;
+  min-height: 700px;
 }
 
 .docImg {
@@ -810,7 +811,7 @@ input[type=email] {
   margin-bottom: 18px;
   padding: 13px;
   padding-top: 0;
-  overflow: scroll;
+  overflow-x: scroll;
 }
 
 .tagBoxContent {
