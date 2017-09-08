@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   LOAD_DOCS_REQUEST, LOAD_DOCS_SUCCESS, LOAD_DOCS_ERROR, EMPTY_DOCS,
   LOAD_SINGLE_DOC_REQUEST, LOAD_SINGLE_DOC_SUCCESS, LOAD_SINGLE_DOC_ERROR,
-  SELECT_TAG,
+  SELECT_TAG, SELECT_FITLER,
 } from '../constants/actionTypes';
 
 
@@ -40,8 +40,14 @@ export const selectTag = (tag) => ({
   tag
 });
 
+export const selectFilter = (filter, filterLabel) => ({
+  type: SELECT_FITLER,
+  filter,
+  filterLabel
+});
+
 export const hydrateDocs = (uid, tag, treasureBox) => {
-  const getDocs = (tag, docs, lastKey, dispatch) => axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?tag=${tag || ''}${lastKey ? `&lastKey=${encodeURI(JSON.stringify(lastKey))}` : ''}`)
+  const getDocs = (tag, docs, lastKey, dispatch) => axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?limit=800&tag=${tag || ''}${lastKey ? `&lastKey=${encodeURI(JSON.stringify(lastKey))}` : ''}`)
     .then((res) => {
       if (res.data && res.data.Items) {
         const newDocs = [...docs, ...res.data.Items];
@@ -50,7 +56,11 @@ export const hydrateDocs = (uid, tag, treasureBox) => {
         if (res.data.Items.findIndex(e => e.uid === uid) === -1) {
           return getDocs(tag, newDocs, newLastkey, dispatch);
         } else {
+          const doc = treasureBox.selectedDocs[uid];
+          const box = doc.metadata.box;
+          const fullLabel = `${doc.metadata.title} Box: ${box}`
           dispatch(receiveDocs(newDocs, newLastkey));
+          dispatch(selectFilter(box, fullLabel));
         }
       } else {
         dispatch(loadDocsError('No documents received'))

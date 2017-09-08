@@ -5,6 +5,9 @@ import configureStore from './store/configureStore';
 import Landing from './components/Landing';
 import Docs from './components/Docs';
 import Participants from './components/Participants';
+import Volunteer from './components/Volunteer';
+import Support from './components/Support';
+import Calibrate from './components/Calibrate';
 import Box from './components/Box';
 import { Router, Route, IndexRoute, browserHistory, hashHistory, applyRouterMiddleware } from 'react-router';
 import { useScroll } from 'react-router-scroll';
@@ -19,7 +22,12 @@ class App extends React.Component {
         <Router history={isProduction ? browserHistory : hashHistory} render={applyRouterMiddleware(useScroll())}>
           <Route path="/" component={Landing} />
           <Route path="/documents/:documentId" component={Docs} />
-          <Route path="/participants" component={Participants} />
+          <Route path="/participants" component={Participants} >
+            <IndexRoute component={Volunteer} />
+            <Route path="volunteers" component={Volunteer} />
+            <Route path="calibrators" component={Calibrate} />
+            <Route path="supporters" component={Support} />
+          </Route>
           <Route path="/treasure" component={Box} />
         </Router>
       </Provider>

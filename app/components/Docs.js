@@ -11,6 +11,7 @@ import styles from '../styles.css';
 import logo from '../assets/hero-menu-logo.png';
 import mobileLogo from '../assets/mobile-menu-logo.png';
 import poweredBy from '../assets/poweredby.png';
+import userTable from '../helpers/userTable';
 
 class Docs extends React.Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class Docs extends React.Component {
 
     if (!!treasureBox.selectedDocs[uid] && !this.props.treasureBox.selectedDocs[uid]) {
       const tag = treasureBox.selectedDocs[uid].primaryTag;
+      const box = treasureBox.selectedDocs[uid].metadata.box;
       this.props.selectTag(tag);
 
       if (treasureBox.documents.findIndex(e => e.uid === uid) === -1) {
@@ -102,6 +104,8 @@ class Docs extends React.Component {
       </li>
     ));
 
+    const contributor = data.userId && userTable[data.userId];
+
     return (
       <div className={styles.treasureBox}>
         <div className={styles.triangle}>
@@ -111,35 +115,36 @@ class Docs extends React.Component {
         <div className={styles.docBody}>
           <div className={styles.docInfoBox}>
             <div className={styles.docInfoTitle}>
-              分類: 中美斷交
+              分類: {treasureBox.selectedTag}
             </div>
-            <div className={styles.docInfoStatus}>
-              文獻狀態：尚未矯正
-            </div>
-            <div className={styles.docInfoContributor}>
-              貢獻者：賞金獵人蕭A
-            </div>
-            <Link to="/treasure"><button>回上層</button></Link>
-          </div>
-          <div className={styles.docImgBox}>
-            <div className={styles.docImgFrame}>
-              <img src={data.resizedUrls && data.resizedUrls.largeUrl} className={styles.docImg} />
-              <div className={styles.lowerRightButtonGroup}>
-                <button className={styles.lowerRightButton}><FontAwesome name='download' /> 下載圖檔</button>
-                <button className={styles.lowerRightButton}><FontAwesome name='heart' /> 12</button>
-              </div>
-              {lastDocUid &&
+            {lastDocUid &&
                 <Link to={`/documents/${lastDocUid}@${+docIndex - 1}`}>
                   <button className={styles.lowerRightButton}><FontAwesome name='chevron-left' /> 上一張</button>
                 </Link>
               }
+            <Link to="/treasure"><button className={styles.lowerRightButton}><FontAwesome name='chevron-up' /> 回上層</button></Link>
               {nextDocUid &&
                 <Link to={`/documents/${nextDocUid}@${+docIndex + 1}`}>
-                  <button className={styles.lowerRightButton}>下一張 <FontAwesome name='chevron-right' /></button>
+                  <button className={styles.lowerRightButtonNext}>下一張 <FontAwesome name='chevron-right' /></button>
                 </Link>
               }
           </div>
+          <div className={styles.docImgBox}>
+            <div className={styles.docImgFrame}>
+              <div className={styles.docInfoStatus}>
+                文獻狀態：尚未矯正
+              </div>
+              <div className={styles.docInfoContributor}>
+                貢獻者：{contributor}
+              </div>
+              <img src={data.resizedUrls && data.resizedUrls.largeUrl} className={styles.docImg} />
+              <div className={styles.lowerRightButtonGroup}>
+                <button className={styles.lowerRightButton}><FontAwesome name='download' /> 下載圖檔</button>
+                <button className={styles.lowerRightButton}><FontAwesome name='heart' /> 0</button>
+              </div>
+            </div>
             <div className={styles.docDataBox}>
+              <Link to="/treasure"><button className={styles.storyButton}><FontAwesome name='book' /> 看寶藏故事</button></Link>
               <div className={styles.tagBoxLabel}>
                 標籤：
               </div>

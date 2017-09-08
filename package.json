@@ -24,6 +24,8 @@
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-fontawesome": "^1.6.1",
+    "react-lazy-load": "^3.0.12",
+    "react-lazyload": "^2.2.7",
     "react-onclickoutside": "^5.11.1",
     "react-redux": "^5.0.2",
     "react-router": "2.5.2",

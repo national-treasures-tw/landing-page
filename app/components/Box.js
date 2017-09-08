@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import LazyLoad from 'react-lazy-load';
+import _ from 'lodash';
 import * as actions from '../actions/documents';
 import NavHeader from './NavHeader';
 import FooterContent from './FooterContent';
@@ -22,7 +24,8 @@ class Box extends React.Component {
       isLoading: false,
       isDebugging: false,
       scrollTop: 0,
-      showDropdown: false
+      showDropdown: false,
+      showSecondaryDropdown: false
     };
   }
 
@@ -57,6 +60,10 @@ class Box extends React.Component {
     this.setState({ showDropdown: !this.state.showDropdown });
   }
 
+  handleSecondaryDropdown = () => {
+    this.setState({ showSecondaryDropdown: !this.state.showSecondaryDropdown });
+  }
+
   handleSwitchTag = (tag) => {
     this.setState({ showDropdown: false });
     this.props.selectTag(tag);
@@ -68,14 +75,26 @@ class Box extends React.Component {
     this.props.loadDocs(treasureBox.lastKey.primaryTag, treasureBox.lastKey);
   }
 
+  handleSwitchFilterBySecondaryTag = (secondaryTag, label) => {
+    this.setState({ showSecondaryDropdown: false });
+    this.props.selectFilter(secondaryTag, label);
+  }
+
   render() {
     const { treasureBox } = this.props;
-    const { selected, isLoading, showDropdown } = this.state;
+    const { selected, isLoading, showDropdown, showSecondaryDropdown } = this.state;
     const images = treasureBox.documents;
+    const truncateString = (string, number) => string.length > (number || 6) ? string.substr(0, number || 6) + '...' : string;
 
     const gallery = images.length > 0 ? images.map((image, index) => (image.resizedUrls && image.resizedUrls.smallUrl) && (
       <div key={image.uid}>
-        <Link to={`/documents/${image.uid}@${index}`}><img src={image.resizedUrls.smallUrl} className={styles.docItem} style={image.resizedUrls.toBeRotatedBy ? { transform: `rotate(${image.resizedUrls.toBeRotatedBy}deg)` } : {}} /></Link>
+        <Link to={`/documents/${image.uid}@${index}`}>
+         <div className={styles.docItem}>
+            <LazyLoad height={320}>
+              <img src={image.resizedUrls.smallUrl} />
+            </LazyLoad>
+          </div>
+        </Link>
         {/*<button onClick={() => this.handleDelete(image.uid)}>DELETE</button>
            <button onClick={() => this.handleRotate(image.uid)}>ROTATE</button>*/}
     </div>
@@ -85,7 +104,17 @@ class Box extends React.Component {
       <li key={tag} className={styles.firstCategoryDropdownListItem} onClick={() => this.handleSwitchTag(tag)}> {tag} </li>
     ))
 
-    const truncateString = (string) => string.length > 6 ? string.substr(0, 6) + '...' : string;
+    const secondaryGroupOptions = treasureBox.selectedTag === '美援' && (
+      _.uniqBy(treasureBox.documentsCopy, 'metadata.box').map(e => {
+        const label = truncateString(e.metadata.title, 40) + ` Box: ${e.metadata.box}`;
+        const fullLabel = `${e.metadata.title} Box: ${e.metadata.box}`;
+        return <li key={e.userId} className={styles.firstCategoryDropdownListItem} onClick={() => this.handleSwitchFilterBySecondaryTag(e.metadata.box, fullLabel)}> {label} </li>
+      })
+    )
+
+    const galleryTitle = images[0] && `${images[0].metadata.title} Box: ${images[0].metadata.box}`;
+
+    const dontShowLabel = (treasureBox.filterLabel === 'All' && treasureBox.selectedTag === '美援') || treasureBox.selectedTag === '聯合國';
 
     return (
       <div className={styles.treasureBox}>
@@ -107,16 +136,32 @@ class Box extends React.Component {
                 </ul>
               </div>
             )}
+            {treasureBox.selectedTag === '美援' && (
+              <div>
+                <div className={styles.secondCategoryControl} onClick={this.handleSecondaryDropdown}>
+                  <div>次分類: {truncateString(treasureBox.filterLabel, 30)}</div> <div className={styles.treasureControlTriangle}></div>
+                </div>
+                {showSecondaryDropdown && (
+                  <div className={styles.secondCategoryDropdown}>
+                    <ul className={styles.firstCategoryDropdownList}>
+                      {secondaryGroupOptions}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              )
+            }
           </div>
+          {!dontShowLabel && <p className={styles.galleryTitle}>{galleryTitle} </p>}
           <div className={styles.treasureContainer}>
-             {gallery}
+            {gallery}
           </div>
           {treasureBox.isFetching && (
             <div style={{ marginBottom: 150 }} className={styles.loader} >
               <div className={styles.loaderContent} />
             </div> )
           }
-          {treasureBox.lastKey && <button className={styles.loadMoreButton} onClick={this.handleLoadMoreDocs}>載入更多</button>}
+          {(treasureBox.lastKey && !treasureBox.isFetching) && <button className={styles.loadMoreButton} onClick={this.handleLoadMoreDocs}>載入更多</button>}
         </div>
         <div className={styles.generalFooter}>
           <FooterContent />

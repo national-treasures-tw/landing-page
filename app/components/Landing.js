@@ -18,8 +18,6 @@ export default class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: '',
-      message: '',
       scrollTop: 0,
     };
   }
@@ -34,34 +32,6 @@ export default class Landing extends React.Component {
 
   handleScroll = () => {
     this.setState({ scrollTop: document.body.scrollTop || document.documentElement.scrollTop });
-  }
-
-  handleInput = (e) => {
-    this.setState({
-      inputValue: e.target.value
-    });
-  }
-
-  handleSubmit = () => {
-    if (this.state.inputValue.includes('@')) {
-      axios.post('https://5bq2v7mgi5.execute-api.us-east-1.amazonaws.com/prod/mySimpleBE', {
-        "Item": {
-          timestamp: `${new Date().getTime()}`,
-          email: this.state.inputValue,
-        },
-        "TableName": 'TNT-Email'
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          this.setState({ inputValue: '', message: 'Thank you! We will be in touch!' })
-        }
-      })
-      .catch((err) => {
-        this.setState({ message: err.message });
-      })
-    } else {
-      this.setState({ message: 'Please enter a valid email!'});
-    }
   }
 
   render() {
@@ -84,12 +54,16 @@ export default class Landing extends React.Component {
               寶藏庫
             </div>
           </Link>
-          <div className={styles.navBoxItem} >
-            故事
-          </div>
-          <div className={styles.navBoxItem} >
-            聯絡我們
-          </div>
+          <a href="https://www.facebook.com/twnationaltreasure/" target="_blank">
+            <div className={styles.navBoxItem} >
+              故事
+            </div>
+          </a>
+          <a href="https://m.me/twnationaltreasure/" target="_blank">
+            <div className={styles.navBoxItem} >
+              聯絡我們
+            </div>
+          </a>
         </div>
         {/*<div className={styles.inputGroup}>
           <div style={{display: 'inline-flex'}}>
