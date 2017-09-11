@@ -116,6 +116,8 @@ class Box extends React.Component {
 
     const dontShowLabel = (treasureBox.filterLabel === 'All' && treasureBox.selectedTag === '美援') || treasureBox.selectedTag === '聯合國';
 
+    const isMobile = window.innerWidth < 415;
+
     return (
       <div className={styles.treasureBox}>
         <div className={styles.triangle}>
@@ -139,7 +141,7 @@ class Box extends React.Component {
             {treasureBox.selectedTag === '美援' && (
               <div>
                 <div className={styles.secondCategoryControl} onClick={this.handleSecondaryDropdown}>
-                  <div>次分類: {truncateString(treasureBox.filterLabel, 30)}</div> <div className={styles.treasureControlTriangle}></div>
+                  <div>次分類: {truncateString(treasureBox.filterLabel, isMobile ? 8 : 30)}</div> <div className={styles.treasureControlTriangle}></div>
                 </div>
                 {showSecondaryDropdown && (
                   <div className={styles.secondCategoryDropdown}>
@@ -157,8 +159,8 @@ class Box extends React.Component {
             {gallery}
           </div>
           {treasureBox.isFetching && (
-            <div style={{ marginBottom: 150 }} className={styles.loader} >
-              <div className={styles.loaderContent} />
+            <div style={{ marginBottom: 150, width: 200, height: 200 }} className={styles.loader} >
+              <div className={styles.loaderContent} style={{ width: 100, height: 100 }} />
             </div> )
           }
           {(treasureBox.lastKey && !treasureBox.isFetching) && <button className={styles.loadMoreButton} onClick={this.handleLoadMoreDocs}>載入更多</button>}

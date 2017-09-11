@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
   LOAD_DOCS_REQUEST, LOAD_DOCS_SUCCESS, LOAD_DOCS_ERROR, EMPTY_DOCS,
   LOAD_SINGLE_DOC_REQUEST, LOAD_SINGLE_DOC_SUCCESS, LOAD_SINGLE_DOC_ERROR,
-  SELECT_TAG, SELECT_FITLER,
+  SELECT_TAG, SELECT_FITLER, CALIBRATE_OCR, CALIBRATE_TRANSLATE,
+  CALIBRATION_SUCCESS, CALIBRATION_ERROR, CALIBRATION_REQUEST
 } from '../constants/actionTypes';
 
 
@@ -82,7 +83,7 @@ export const loadDocs = (tag, lastKey, isReloadingDocs) => {
       dispatch(emptyCachedDocs())
     }
     dispatch(requestDocs());
-    return axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?tag=${tag || ''}${lastKey ? `&lastKey=${encodeURI(JSON.stringify(lastKey))}` : ''}`)
+    return axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?limit=100&tag=${tag || ''}${lastKey ? `&lastKey=${encodeURI(JSON.stringify(lastKey))}` : ''}`)
     .then((res) => {
       if (res.data && res.data.Items) {
         dispatch(receiveDocs(res.data.Items, res.data.LastEvaluatedKey));
@@ -107,5 +108,50 @@ export const getSingleDoc = (uid) => {
       }
     })
     .catch(err => dispatch(loadDocsError(err.message)))
+  }
+}
+
+export const calibrate = (uid, ocrMode, calibratedText) => {
+  return {
+    type: ocrMode === 'En' ? CALIBRATE_OCR : CALIBRATE_TRANSLATE,
+    text: calibratedText,
+    uid
+  }
+}
+
+const calibrationError = message => ({
+  type: CALIBRATION_ERROR,
+  message,
+});
+
+const requestCalibration = () => ({
+  type: CALIBRATION_REQUEST,
+});
+
+const calibrationSuccess = (uid) => ({
+  type: CALIBRATION_SUCCESS,
+  uid
+});
+
+export const calibrationComplete = (uid, oldText, newText, type) => {
+  return (dispatch) => {
+    // requesting docs...
+    dispatch(requestCalibration());
+    return axios.post('https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/calibrate', {
+      oldText,
+      newText,
+      uid,
+      type,
+      userId: 'none'
+    })
+    // return new Promise((resolve, e) => setTimeout(() => resolve({ data: { success: true }}), 2000))
+    .then((res) => {
+      if (res.data && res.data.success) {
+        dispatch(calibrationSuccess(uid));
+      } else {
+        dispatch(calibrationError('Something went wrong'))
+      }
+    })
+    .catch(err => dispatch(calibrationError(err.message)))
   }
 }

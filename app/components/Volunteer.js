@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 import styles from '../styles.css';
 import logo from '../assets/hero-menu-logo.png';
 import mobileLogo from '../assets/mobile-menu-logo.png';
@@ -29,7 +30,7 @@ export default class Landing extends React.Component {
         <div className={styles.bodyArchiveInfo}>
           <div className={styles.archiveLogo}>
             <img src={archiveLogo} className={styles.logos} style={{ opacity: 1}} />
-            <img src={UNLogo} className={styles.logos} />
+            {/*<img src={UNLogo} className={styles.logos} />*/}
           </div>
           <div className={styles.bodyArchiveInfoContent}>
             <div className={styles.bodyArchiveInfoContentItem}>
@@ -37,9 +38,9 @@ export default class Landing extends React.Component {
               <p className={styles.bodyArchiveInfoContentItemBody}>美國國家檔案局 - National Archives and Records Administration (以下簡稱 NARA)，座落在馬里蘭州的 College Park ，在首府華盛頓 DC 北方約 30 分鐘車程 ，Baltimore (金鶯隊主場) 南方約 40 分車程處。 1993年由國會議員 Steny Hoyer 協調馬里蘭大學捐出部分校地修建而成，進而取代在華府的 NARA 總部，變成主要珍藏開放的聯邦文件的所在，因此馬里蘭的 NARA 又簡稱 NARA II 。</p>
             </div>
             <div className={styles.bodyArchiveInfoContentItem}>
-              <h5 className={styles.bodyArchiveInfoContentItemTitle}>開團時間</h5>
-              <p className={styles.bodyArchiveInfoContentItemBody}> 8/15 8AM 紐約 -> 檔案局 </p>
-              <p className={styles.bodyArchiveInfoContentItemBody}> 9/10 8AM 華盛頓DC -> 檔案局 </p>
+              <h5 className={styles.bodyArchiveInfoContentItemTitle1}>開團時間</h5>
+              <p className={styles.bodyArchiveInfoContentItemBody}> 8/24 <FontAwesome name='bus' /> 8AM 紐約 <FontAwesome name='arrow-right' /> 檔案局 </p>
+              <p className={styles.bodyArchiveInfoContentItemBody}> 9/26 <FontAwesome name='bus' /> 8AM 華盛頓DC <FontAwesome name='arrow-right' /> 檔案局 </p>
             </div>
           </div>
         </div>

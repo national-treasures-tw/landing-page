@@ -56,7 +56,7 @@ export default class Landing extends React.Component {
               <p className={styles.teamBoxBodyDesktop}>
                 <span className={styles.team1Subtitle}>優點</span>   可以第一手接觸到文史資料
               </p>
-              <Link to="/participants/volunteers#toHere"><button className={styles.teamBoxButton}> 挖寶指南 </button></Link>
+              <Link to="/participants/volunteers#toHere"><button className={route === 'volunteers' ? styles.teamBoxButtonActive : styles.teamBoxButton}> 挖寶指南 </button></Link>
             </div>
           </div>
           <div className={route === 'calibrators' ? styles.teamBoxItemActive : styles.teamBoxItem}>
@@ -74,7 +74,7 @@ export default class Landing extends React.Component {
               <p className={styles.teamBoxBodyDesktop}>
                 <span className={styles.team2Subtitle}>優點</span> 修身養性的細心、打字速度進步、電腦前即可貢獻的參與感
               </p>
-              <Link to="/participants/calibrators#toHere"><button className={styles.teamBoxButton}> 如何鑑定 </button></Link>
+              <Link to="/participants/calibrators#toHere"><button className={route === 'calibrators' ? styles.teamBoxButtonActive : styles.teamBoxButton}> 如何鑑定 </button></Link>
             </div>
           </div>
           <div className={route === 'supporters' ? styles.teamBoxItemActive : styles.teamBoxItem}>
@@ -89,7 +89,7 @@ export default class Landing extends React.Component {
               <p className={styles.teamBoxBodyDesktop}>
                 <span className={styles.team3Subtitle}>適合</span>   各方專業人士、各方英才、歷史學家、文案寫手、工程師、設計師、社群經營等等等，有錢出錢有力出力的熱血份子
               </p>
-              <Link to="/participants/supporters#toHere"><button className={styles.teamBoxButton3}> 從何貢獻 </button></Link>
+              <Link to="/participants/supporters#toHere"><button className={route === 'supporters' ? styles.teamBoxButton3Active : styles.teamBoxButton3}> 從何貢獻 </button></Link>
             </div>
           </div>
         </div>

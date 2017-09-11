@@ -24,14 +24,15 @@ export default class NavHeader extends React.Component {
   render() {
     const { isLanding, scrollTop } = this.props;
     const { isMobileMenuOpen } = this.state;
+    const isMobile = window.innerWidth < 415;
     const mobilePopoutWidth = window.innerWidth - 198 < 148 ? window.innerWidth - 198 : 148;
     return (
-        <div className={styles.navBar} style={isLanding ? { opacity: easing(481, 560, scrollTop) } : { opacity: 1}}>
+        <div className={styles.navBar} style={isLanding ? { opacity: easing(481, 560, scrollTop), marginTop: isMobile ? -23 : -9 } : { opacity: 1}}>
           <Link to="/">
             <img src={navLogo} className={styles.navLogo} />
           </Link>
           <div className={styles.navHeader}>
-            <Link to="/participants">
+            <Link to="/participants/volunteers">
               <div className={styles.navHeaderItem} >
                 參與尋寶
               </div>
@@ -73,7 +74,7 @@ export default class NavHeader extends React.Component {
           }
           {isMobileMenuOpen &&
           <div className={styles.navHeaderMobilePopout} style={{ width: mobilePopoutWidth , marginLeft: window.innerWidth - mobilePopoutWidth }}>
-            <Link to="/participants">
+            <Link to="/participants/volunteers">
               <div className={styles.navHeaderPopoutItem} >
                 參與尋寶
               </div>

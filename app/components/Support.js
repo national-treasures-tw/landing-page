@@ -1,38 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router';
+import axios from 'axios';
 import FontAwesome from 'react-fontawesome';
 import styles from '../styles.css';
 import logo from '../assets/hero-menu-logo.png';
 import badge1 from '../assets/participants/badge-1.png';
 import poweredBy from '../assets/poweredby.png';
-
-const CheckoutHandler = StripeCheckout.configure({
-  key: process.env.STRIPE_KEY || 'pk_test_FWjXEBDiJRrNL1FNJMOP0Jrm',
-  image: 'https://www.nationaltreasure.tw/logo.png',
-  locale: 'auto',
-  name: 'Taiwan National Treasure',
-  panelLabel: 'Donate',
-  description: 'Thank you for donating to TNT. It will keep us running!',
-  token: (token) => {
-    console.log(token);
-    // You can access the token ID with `token.id`.
-    // Get the token ID to your server-side code for use.
-  }
-});
+import { STRIPE_KEY } from '../env';
 
 export default class Support extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDonating: false,
+      donateAmount: 0,
+      donateMsg: ''
+    }
+
+    this.CheckoutHandler = StripeCheckout.configure({
+      key: STRIPE_KEY || 'pk_test_FWjXEBDiJRrNL1FNJMOP0Jrm',
+      image: 'https://www.nationaltreasure.tw/logo.png',
+      locale: 'auto',
+      name: 'Taiwan National Treasure',
+      panelLabel: 'Donate',
+      description: 'Your donation is important to us',
+      token: (token) => {
+        // console.log(token);
+        axios.post('https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/donation', {
+          token: token.id,
+          email: token.email,
+          amount: (this.state.donateAmount || 10) * 100
+        });
+
+        this.setState({ isDonating: false, donateMsg: '感謝您的支持，我們會更加努力開採寶藏！'})
+        // You can access the token ID with `token.id`.
+        // Get the token ID to your server-side code for use.
+      }
+    });
+  }
+
 
   handleDonation = () => {
-    CheckoutHandler.open({
-      amount: 2000
+    const { donateAmount } = this.state;
+
+    if (donateAmount < 0) {
+      alert('請輸入正確捐款金額');
+    } else {
+      this.CheckoutHandler.open({
+      amount: (donateAmount || 10) * 100
     })
+    }
   }
 
   componentWillUnmount() {
-    CheckoutHandler.close();
+    this.CheckoutHandler.close();
+  }
+
+  handleOpenDonationBox = () => {
+    this.setState({ isDonating: true });
+  }
+
+  handleDonateAmount = (event) => {
+    this.setState({ donateAmount: event.target.value });
   }
 
   render() {
+    const { isDonating, donateMsg } = this.state;
+
     return (
       <div className={styles.contentBody} id="toHere">
         <img src={badge1} className={styles.bodyBadge} />
@@ -63,9 +97,21 @@ export default class Support extends React.Component {
             <p className={styles.supportButtonSubtitle}>介面設計師、歷史學家、文案寫手</p>
           </div>
           <div className={styles.supportButtonContainer}>
-            <button className={styles.supportButton} onClick={this.handleDonation}>捐款贊助</button>
-             <p className={styles.supportButtonSubtitle}>有可支配收入的好人、慈善家</p>
+            <button className={styles.supportButton} onClick={this.handleOpenDonationBox}>捐款贊助</button>
+             <p className={styles.supportButtonSubtitle}>任何人</p>
           </div>
+          {isDonating &&
+          <div className={styles.donateButtonContainer}>
+            <p className={styles.donateButtonSubtitle}>捐款金額 (美金)</p>
+            <FontAwesome name='usd' style={{ color: 'white', marginRight: 5 }} /><input placeholder="10" type="number" className={styles.donateInput} onChange={this.handleDonateAmount} />
+            <button className={styles.donateButton} onClick={this.handleDonation}>下一步</button>
+          </div>
+          }
+          {donateMsg &&
+          <div className={styles.donateButtonContainer}>
+            <p className={styles.supportButtonSubtitle}>{donateMsg}</p>
+          </div>
+          }
         </div>
       </div>
     );

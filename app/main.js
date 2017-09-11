@@ -16,7 +16,7 @@ const store = configureStore();
 
 class App extends React.Component {
   render() {
-    const isProduction = process.env.production === 'production';
+    const isProduction = process.env.NODE_ENV === 'production';
     return (
       <Provider store={store}>
         <Router history={isProduction ? browserHistory : hashHistory} render={applyRouterMiddleware(useScroll())}>

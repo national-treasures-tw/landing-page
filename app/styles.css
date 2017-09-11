@@ -1,7 +1,8 @@
 
 
 html {
-  font-family: 'Inknut Antiqua', serif;
+  font-family: 'Roboto', sans-serif;
+  line-height: 30px;
   overflow-x: hidden;
 }
 
@@ -9,7 +10,7 @@ html {
   font-size: 16px;
   color: #000;
   padding-left: 10px;
-  font-family: 'Inknut Antiqua', serif;
+  font-family: 'Roboto', sans-serif;;
   opacity: 0.5;
 }
 
@@ -34,7 +35,11 @@ input[type=email] {
   font-size: 16px;
   color: #000;
   padding-left: 15px;
-  font-family: 'Inknut Antiqua', serif;
+  font-family: 'Roboto', sans-serif;;
+}
+
+.landingWrapper {
+  overflow-x: hidden;
 }
 
 .landingBox {
@@ -160,6 +165,7 @@ input[type=email] {
 
 .navBox {
   border-top: 4px solid #352D2A;
+  padding-top: 14px;
   width: 76px;
   padding-left: 131px;
   text-align: right;
@@ -194,17 +200,18 @@ input[type=email] {
 
 .navBoxItem {
   padding-top: 5px;
+  cursor: pointer;
+  height: 52px;
 }
 
 .navBoxItem:hover {
-  border-bottom: 2px solid #352D2A;
-  cursor: pointer;
+  opacity: 0.7;
 }
 
 .navHeaderItem {
   composes: navBoxItem;
   margin-right: 36px;
-  padding-top: 10px;
+  padding-top: 18px;
 }
 
 .navMobileMenu {
@@ -266,6 +273,7 @@ input[type=email] {
 
 .sectionItem {
   line-height: 28px;
+  width: 94%;
 }
 
 .sectionItemUSA {
@@ -276,11 +284,13 @@ input[type=email] {
   composes: sectionItem;
   border: 2px solid #352D2B;
   border-radius: 2px;
-  width: 384px;
+  width: 364px;
   height: 43px;
   font-size: 24px;
   line-height: 42px;
-  padding-left: 5px;
+  padding-left: 14px;
+  cursor: pointer;
+  z-index: 300;
 }
 
 .sectionItemNarrow {
@@ -322,6 +332,7 @@ input[type=email] {
   width: 100%;
   margin-left: -8px;
   overflow: hidden;
+  z-index: -10;
 }
 
 .generalFooter {
@@ -352,7 +363,8 @@ input[type=email] {
 }
 
 .footerInfo {
-  padding-top: 15px;
+  padding-top: 50px;
+  line-height: 24px;
 }
 
 
@@ -411,9 +423,9 @@ input[type=email] {
 .teamBox {
   position: relative;
   top: 120px;
-  width: 100%;
+  width: 93%;
   display: flex;
-  margin-left: 0vw;
+  justify-content: space-between;
 }
 
 .teamBoxItem {
@@ -490,7 +502,7 @@ input[type=email] {
 }
 
 .teamBoxBody {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   line-height: 28px;
   color: #170000;
@@ -528,9 +540,17 @@ input[type=email] {
   cursor: pointer;
 }
 
+.teamBoxButtonActive {
+  composes: teamBoxButton;
+}
+
 .teamBoxButton3 {
   composes: teamBoxButton;
   bottom: -76px;
+}
+
+.teamBoxButton3Active {
+  composes: teamBoxButton;
 }
 
 .contentBody {
@@ -661,8 +681,6 @@ input[type=email] {
 }
 .loaderContent {
   position: absolute;
-  width: 100px;
-  height: 100px;
   top: 20px;
   left: 20px;
   border-radius: 50%;
@@ -672,8 +690,8 @@ input[type=email] {
   animation: loader 1s linear infinite;
 }
 .loader {
-  width: 200px !important;
-  height: 200px !important;
+  width: 100%;
+  height: 100%;
   -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
   transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
   margin-left: 40%;
@@ -723,6 +741,7 @@ input[type=email] {
   padding-left: 25px;
   display: flex;
   cursor: pointer;
+  line-height: 46px;
 }
 
 .secondCategoryControl {
@@ -863,6 +882,12 @@ input[type=email] {
   width: 40%;
 }
 
+.docPageControl {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
 .lowerRightButton {
   padding: 6px;
   padding-left: 12px;
@@ -872,8 +897,8 @@ input[type=email] {
   composes: docPageBorder;
   background-color: #fff;
   border-radius: 2px;
-  margin-right: 21px;
   margin-bottom: 72px;
+  cursor: pointer;
 }
 
 .storyButton {
@@ -882,11 +907,6 @@ input[type=email] {
   background-color: #6b4e3d;
   margin-left: 70%;
   margin-bottom: 30px;
-}
-
-.lowerRightButtonNext {
-  composes: lowerRightButton;
-  margin-left: 65%;
 }
 
 .tagBoxLabel {
@@ -986,6 +1006,54 @@ input[type=email] {
   font-size: 16px;
 }
 
+.masterControlBox {
+  display: flex;
+  width: 106%;
+  justify-content: space-between;
+}
+
+.calibrateControls {
+  composes: ocrControls;
+  width: 200px;
+}
+
+.calibrateControlItemActive {
+  composes: ocrControlItemActive;
+}
+
+.calibrateControlItem {
+  composes: ocrControlItem;
+}
+
+.calibrateTextArea {
+  composes: ocrBox;
+}
+
+.calibrateMsgButtonBox {
+  display: flex;
+  justify-content: space-between;
+  width: 108%;
+}
+
+.calibrateMsg {
+  width: 144px;
+  color: #6b4e3d
+}
+
+.editDone {
+  composes: storyButton;
+  background-color: #a01e40;
+  border-color: #a01e40;
+  width: 122px;
+  height: 38px;
+  font-size: 16px;
+  margin-left: 0;
+}
+
+.mobileNoCalibrateBox {
+  display: none;
+}
+
 /* End Document Page */
 
 /* Support Page */
@@ -1007,6 +1075,7 @@ input[type=email] {
   margin-top: 60px;
   padding-bottom: 100px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .supportButtonContainer {
@@ -1029,6 +1098,35 @@ input[type=email] {
   color: white;
 }
 
+.donateButtonSubtitle {
+  composes: supportButtonSubtitle;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.donateButtonContainer {
+  composes: supportButtonContainer;
+  margin-left: 30%;
+  margin-top: 20px;
+}
+
+.donateInput {
+  width: 166px;
+  height: 30px;
+  font-size: 14px;
+  padding-left: 14px;
+  border-radius: 5px;
+  margin-bottom: 24px;
+}
+
+.donateButton {
+  composes: supportButton;
+  width: 83px;
+  height: 38px;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
 /* End Support Page */
 
 /* Calibrate Page */
@@ -1036,11 +1134,17 @@ input[type=email] {
 .bodyCalibrateInfo {
   composes: bodySupportInfo;
   display: block;
+  width: 50%;
+  margin-left: 25%;
+}
+
+.bodyCalibrateImg {
+  width: 100%;
+  height: 130%;
 }
 
 .calibrateButton {
   composes: supportButton;
-  width: 250px;
   margin-left: 30%;
   margin-top: 50px;
 }
@@ -1203,6 +1307,7 @@ input[type=email] {
   .footer {
     padding-bottom: 70px;
     font-size: 14px;
+    bottom: -238px;
   }
 
   .footerContent {
@@ -1216,6 +1321,7 @@ input[type=email] {
   }
 
   .footerInfo {
+    padding-top: 0;
     font-size: 14px;
   }
 
@@ -1244,6 +1350,7 @@ input[type=email] {
     position: fixed;
     height: 92%;
     top: 60px;
+    left: 0;
   }
 
   .navHeaderPopoutItem {
@@ -1269,13 +1376,14 @@ input[type=email] {
 
   .teamBox {
     display: block;
-    width: 90%;
+    width: 93%;
     top: 220px;
   }
 
   .teamBoxItem {
     width: 100%;
-    margin-bottom: 60px;
+    height: 120px;
+    margin-bottom: 112px;
   }
 
   .teamBoxItemActive {
@@ -1285,7 +1393,7 @@ input[type=email] {
 
   .teamBoxBadge1 {
     position: relative;
-    top: -173px;
+    top: -214px;
     left: 30px;
     width: 88px;
   }
@@ -1308,26 +1416,33 @@ input[type=email] {
 
   .teamBoxItemContent1 {
     composes: teamBoxItemContent;
-    margin-top: -200px;
+    position: relative;
+    top: -276px;
   }
 
   .teamBoxItemContent2 {
     composes: teamBoxItemContent;
-    margin-top: 0px;
+    position: relative;
+    top: -109px;
   }
 
-  .teamBoxItemContent1 {
+  .teamBoxItemContent3 {
     composes: teamBoxItemContent;
-    margin-top: -200px;
+    position: relative;
+    top: -109px;
   }
 
   .teamBoxItemTitle {
-    font-size: 26px;
+    font-size: 18px;
   }
 
 
   .teamBoxBody {
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 21px;
+    padding-left: 12%;
+    width: 85%;
+    margin-top: -12px;
   }
 
   .teamBoxBodyDesktop {
@@ -1335,29 +1450,33 @@ input[type=email] {
   }
 
   .teamBoxButton {
-    width: 147px;
-    height: 52px;
-    background-color: #6B4E3D;
-    color: white;
-    font-size: 18px;
-    border: none;
-    position: relative;
-    bottom: -48px;
-    left: 75px;
-    cursor: pointer;
+    width: 111.5%;
+    height: 38px;
+    font-size: 16px;
+    bottom: -13px;
+    left: -5px;
+  }
+
+  .teamBoxButtonActive {
+    composes: teamBoxButton;
+    box-shadow: 6px 6px 2px #888888;
   }
 
   .teamBoxButton3 {
     composes: teamBoxButton;
-    bottom: -76px;
+    bottom: -34px;
+    box-shadow: 6px 6px 2px #888888;
+  }
+
+  .teamBoxButton3Active {
+    composes: teamBoxButton3;
+    box-shadow: 6px 6px 2px #888888;
   }
 
   .contentBody {
     width: 100%;
-    background-color: rgba(55,19,28,0.74);
-    margin-top: 300px;
+    margin-top: 370px;
     margin-left: 0;
-    margin-bottom: 50px;
   }
 
   .bodyBadge {
@@ -1397,33 +1516,20 @@ input[type=email] {
   .bodyArchiveInfoContentItemTitle1 {
     composes: bodyArchiveInfoContentItemTitle;
     border-bottom: 1px solid #FFFFFF;
-    width: 130px;
+    width: 150px;
   }
 
   .bodyArchiveInfoContentItemBody {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 100;
-  }
-
-  .archiveLogo {
-    composes: teamBoxBadge;
-    top: -45px;
-    left: 0;
-    display: flex;
-    height: 139px;
-    padding-left: 40px;
+    font-size: 14px;
+    line-height: 20px;
   }
 
   .logos {
-    width: 139px;
+    width: 100px;
+    height: 100px;
     cursor: pointer;
     opacity: 0.75;
-    margin-right: 10%;
-  }
-
-  .logos:hover {
-    opacity: 1;
+    margin-right: 15%;
   }
 
   .bodyTitle2 {
@@ -1464,6 +1570,16 @@ input[type=email] {
     width: 91%;
     margin-left: 3%;
   }
+
+  .supportButton {
+    width: 166px;
+    font-size: 18px;
+  }
+
+  .donateButtonContainer {
+    margin-left: 0;
+  }
+
   /* End Phone Volunteers */
 
   /* Phone Trasure */
@@ -1482,7 +1598,35 @@ input[type=email] {
     line-height: 20px;
   }
 
+  .loader {
+    margin-left: 28%;
+  }
+
+  .treasureControls {
+    display: block;
+    height: 130px;
+  }
+
+  .docItem {
+    margin-bottom: 100px;
+  }
+
+  .secondCategoryControl {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 80%;
+  }
+
+  .secondCategoryDropdown {
+    margin-left: 0;
+    width: 80%;
+  }
+
   /* Phone Doc Page */
+
+  .docBody {
+    margin-top: 165px;
+  }
 
   .docImgBox {
     display: block;
@@ -1501,11 +1645,11 @@ input[type=email] {
   }
 
   .docInfoStatus {
-    padding-left: 30%;
+    padding-left: 7%;
   }
 
   .docInfoContributor {
-    padding-left: 30%;
+    padding-left: 7%;
   }
 
   .docImgFrame {
@@ -1531,13 +1675,255 @@ input[type=email] {
   }
 
   .ocrControls {
-    margin-left: 30%;
+    margin-left: 7%;
+  }
+
+  .ocrBox {
+    width: 88%;
+    line-height: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
   .lowerRightButtonGroup {
     display: none;
   }
+
+  .calibrateControls {
+    display: none;
+  }
+
+  .mobileNoCalibrateBox {
+    display: block;
+    width: 72%;
+    height: 53px;
+    top: 128px;
+    line-height: 20px;
+    position: relative;
+    margin-left: 10%;
+    padding: 5px;
+    text-align: center;
+    background-color: #FFF;
+    opacity: 0.5;
+  }
+
+  .mobileNoCalibrateMsg { 
+    position: relative;
+    top: -155px;
+  }
   
+}
+
+/* phone 5 protrait */
+@media (max-width: 321px) {
+  
+  .triangle {
+    margin-left: 0;
+  }
+
+  .teamBoxItemContent1 {
+    top: -268px;
+  }
+
+  .teamBoxItemContent2 {
+    top: -101px;
+  }
+
+  .teamBoxItemContent3 {
+    top: -101px;
+  }
+
+  .teamBoxButton {
+    bottom: -2px;
+  }
+
+  .teamBoxBadge1 {
+    left: 14px;
+  }
+
+  .bodyBadge {
+    margin-left: -5%;
+  }
+
+  .archiveLogo {
+    padding-left: 35px;
+  }
+
+  .bodyArchiveInfoContentItem {
+    padding-left: 20px;
+  }
+
+  .appSection {
+    margin-left: 0;
+  }
+
+  .appSectionBody {
+    padding-left: 10px;
+  }
+
+  .footerContent {
+    margin-left: 5%;
+  }
+
+}
+
+
+/* ipad */
+@media (max-width: 1025px) and (min-width: 767px) {
+  .taiwan {
+    width: 467px;
+    right: 5%;
+  }
+
+  .logo {
+    margin-left: 100px;
+  }
+
+  .navBox {
+    margin-left: 70px;
+  }
+
+  .doc1Img {
+    display: none;
+  }
+
+  .sectionLeft {
+    margin-top: 240px;
+    left: -130px;
+  } 
+
+  .usaImg {
+    width: 431px;
+    height: 307px;
+    margin-bottom: -120px;
+  }
+
+  .sectionItem {
+    width: 90%;
+  }
+
+  .buttonGroup {
+    width: 90%;
+  }
+
+  .sectionLeftUSA {
+    display: block;
+    top: 1540px;
+  }
+
+  .sectionLeftContent2 {
+    height: 600px;
+  }
+
+  .sectionLeft {
+    width: 890px;
+  }
+
+  .innerContent {
+    padding-top: 80px;
+  }
+
+  .footerContent {
+    margin-left: 13%;
+  }
+
+  /* participants page */
+
+  .backgroundHero {
+    width: 100%;
+  }
+
+  .teamBoxBadge {
+    top: -51px;
+    left: 56px;
+    width: 100px;
+  }
+
+  .teamBoxItem {
+    width: 207px;
+    height: 300px;
+  }
+
+  .teamBoxItemContent {
+    margin-top: -70px;
+    width: 150px;
+    margin-left: 30px;
+  }
+
+  .teamBoxItemTitle {
+    font-size: 18px;
+    letter-spacing: 4px;
+    line-height: 32px;
+    margin-bottom: 14px;
+  }
+
+  .teamBoxBody {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .teamBoxButton {
+    width: 99px;
+    height: 37px;
+    font-size: 16px;
+    bottom: -14px;
+    left: 25px;
+  }
+
+  .teamBoxButton3 {
+    bottom: -15px;
+  }
+
+  .contentBody {
+    width: 100%;
+    margin-left: 0vh;
+  }
+
+  .bodyTitle {
+    font-size: 24px;
+    margin-top: 28px;
+  }
+
+  .bodyBadge {
+    left: 43%;
+  }
+
+  .bodyArchiveInfo {
+    margin-top: 66px;
+  }
+
+  .triangle {
+    margin-left: 19%;
+    border-width: 0 225px 225px 225px;
+  }
+
+  .triangleContent {
+    font-size: 26px;
+    top: 36px;
+  }
+
+  .appSection {
+    margin-left: 12%;
+  }
+
+  .calibrateButton {
+    margin-left: 20%;
+  }
+
+  /* Treasure page */
+
+  .treasureBody {
+    width: 100%;
+    margin-left: 0vh;
+  }
+
+  .masterControlBox {
+    display: block;
+  }
+
+  .donateButtonContainer {
+    margin-left: 20%;
+  }
 }
 
 

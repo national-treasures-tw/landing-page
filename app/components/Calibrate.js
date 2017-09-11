@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 import styles from '../styles.css';
 import logo from '../assets/hero-menu-logo.png';
 import badge3 from '../assets/participants/badge-3.png';
@@ -23,7 +22,7 @@ export default class Support extends React.Component {
         </p>
         <div className={styles.bodyCalibrateInfo}>
           <img src={screenshot} width={750} height={600} className={styles.bodyCalibrateImg} />
-          <button className={styles.calibrateButton}>前往寶藏庫開始鑑定</button>
+          <Link to="/treasure"><button className={styles.calibrateButton}>開始鑑定</button></Link>
         </div>
       </div>
     );

@@ -4,3 +4,6 @@ npm-debug.log
 *.DS_Store
 # generated files
 build/bundle.js
+
+# ENV
+app/env.js
