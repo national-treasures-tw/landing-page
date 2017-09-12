@@ -59,9 +59,12 @@ export const hydrateDocs = (uid, tag, treasureBox) => {
         } else {
           const doc = treasureBox.selectedDocs[uid];
           const box = doc.metadata.box;
+          const USAidBoxes = ['93-94', '95-96', '21-22', '245-246'];
           const fullLabel = `${doc.metadata.title} Box: ${box}`
           dispatch(receiveDocs(newDocs, newLastkey));
-          dispatch(selectFilter(box, fullLabel));
+          if (USAidBoxes.indexOf(box) !== -1) {
+            dispatch(selectFilter(box, fullLabel));
+          }
         }
       } else {
         dispatch(loadDocsError('No documents received'))
