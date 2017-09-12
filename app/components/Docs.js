@@ -60,17 +60,20 @@ class Docs extends React.Component {
 
   handleKeyDown = (event) => {
     const { params, treasureBox } = this.props;
-    const docIndex = params.documentId.split('@')[1];
-    let lastDocUid;
-    if (docIndex !== '0') {
-      lastDocUid = treasureBox.documents[+docIndex - 1] && treasureBox.documents[+docIndex - 1].uid;
-    }
+    const { isCalibrateModeOn } = this.state;
+    if (!isCalibrateModeOn) {
+      const docIndex = params.documentId.split('@')[1];
+      let lastDocUid;
+      if (docIndex !== '0') {
+        lastDocUid = treasureBox.documents[+docIndex - 1] && treasureBox.documents[+docIndex - 1].uid;
+      }
 
-    const nextDocUid = treasureBox.documents[+docIndex + 1] && treasureBox.documents[+docIndex + 1].uid;
-    if (event.key === 'ArrowRight' && nextDocUid) {
-      this.props.history.push(`/documents/${nextDocUid}@${+docIndex + 1}`)
-    } else if (event.key === 'ArrowLeft' && lastDocUid) {
-      this.props.history.push(`/documents/${lastDocUid}@${+docIndex - 1}`)
+      const nextDocUid = treasureBox.documents[+docIndex + 1] && treasureBox.documents[+docIndex + 1].uid;
+      if (event.key === 'ArrowRight' && nextDocUid) {
+        this.props.history.push(`/documents/${nextDocUid}@${+docIndex + 1}`)
+      } else if (event.key === 'ArrowLeft' && lastDocUid) {
+        this.props.history.push(`/documents/${lastDocUid}@${+docIndex - 1}`)
+      }
     }
   }
 
@@ -144,7 +147,9 @@ class Docs extends React.Component {
       <div style={{ marginTop: -31, marginLeft: '17%'}} className={styles.loader} >
         <div className={styles.loaderContent} style={{ width: 20, height: 20, borderWidth: 2 }} />
       </div>
-    ); 
+    );
+
+    const hasBeenCalibrated = data.ocr && data.ocr.length === 1;
 
     return (
       <div className={styles.treasureBox}>
@@ -177,7 +182,7 @@ class Docs extends React.Component {
           <div className={styles.docImgBox}>
             <div className={styles.docImgFrame}>
               <div className={styles.docInfoStatus}>
-                文獻狀態：尚未校正
+                文獻狀態：{ hasBeenCalibrated ? '已校正' : '尚未校正' }
               </div>
               <div className={styles.docInfoContributor}>
                 貢獻者：{contributor}

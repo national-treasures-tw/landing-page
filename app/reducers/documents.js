@@ -9,6 +9,7 @@ import {
 const initialState = {
   isFetching: false,
   documents: [],
+  documentsCopy: [],
   selectedDocs: {},
   selectedTag: '中美斷交',
   filterLabel: 'All'
@@ -19,7 +20,9 @@ const documentReducer = (state = initialState, action) => {
     case LOAD_DOCS_REQUEST:
       return { ...state, isFetching: true };
     case LOAD_DOCS_SUCCESS:
-      return { ...state, isFetching: false, documentsCopy: [ ...state.documents, ...action.documents], documents: [ ...state.documents, ...action.documents], lastKey: action.lastKey };
+      const mergedDocs = [ ...state.documentsCopy, ...action.documents];
+      const filterDocs = state.filter ? mergedDocs.filter(e => e.metadata.box === state.filter) : mergedDocs;
+      return { ...state, isFetching: false, documentsCopy: mergedDocs, documents: filterDocs, lastKey: action.lastKey };
     case LOAD_DOCS_ERROR:
       return { ...state, isFetching: false, errorMessage: action.message };
     case LOAD_SINGLE_DOC_REQUEST:

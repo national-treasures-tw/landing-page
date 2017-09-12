@@ -90,7 +90,7 @@ class Box extends React.Component {
       <div key={image.uid}>
         <Link to={`/documents/${image.uid}@${index}`}>
          <div className={styles.docItem}>
-            <LazyLoad height={320}>
+            <LazyLoad height={320} offset={200}>
               <img src={image.resizedUrls.smallUrl} />
             </LazyLoad>
           </div>
