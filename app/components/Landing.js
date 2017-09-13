@@ -1,6 +1,7 @@
 import React from 'react';
 import NavHeader from './NavHeader';
 import { Link } from 'react-router';
+import { Helmet } from "react-helmet";
 import styles from '../styles.css';
 import hero from '../assets/hero-img.png';
 import logo from '../assets/hero-menu-logo.png';
@@ -39,6 +40,17 @@ export default class Landing extends React.Component {
     const isMobile = window.innerWidth < 415;
     return (
       <div>
+        <Helmet>
+          <title>國家寶藏</title>
+          <meta name="description" content="關於台灣過去的拼圖，散落在全世界的各個角落。我們需要把它們找出來、加以數位化，轉譯成為人人都可取用的開放資料與有意義的歷史故事。" />
+          <meta property="og:site_name" content="國家寶藏"/>
+          <meta property="fb:app_id" content="1032864670166054" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="國家寶藏" />
+          <meta property="og:url" content="https://www.nationaltreasure.tw" />
+          <meta property="og:image" content="https://s3.amazonaws.com/www.nationaltreasure.tw/old/18558825_421220314943947_3448499869200618121_o.jpg" />
+          <meta property="og:description" content="關於台灣過去的拼圖，散落在全世界的各個角落。我們需要把它們找出來、加以數位化，轉譯成為人人都可取用的開放資料與有意義的歷史故事。" />
+        </Helmet>
         <div className={styles.landingBox} />
         <div className={styles.lowerLandingBox} />
         <NavHeader isLanding scrollTop={scrollTop} />

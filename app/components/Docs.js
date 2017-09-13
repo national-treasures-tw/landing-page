@@ -160,6 +160,10 @@ class Docs extends React.Component {
           <meta property="og:url" content={`https://www.nationaltreasure.tw${location.pathname}`} />
           <meta property="og:image" content={data.resizedUrls && data.resizedUrls.mediumUrl} />
           <meta property="og:description" content={`${treasureBox.selectedTag}文件：...${data.ocr && data.ocr[0].substr(50, 100)}...`} />
+          <meta property="og:site_name" content="國家寶藏"/>
+          <meta property="fb:app_id" content="1032864670166054" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content={`國家寶藏文件：${treasureBox.selectedTag}系列`} />
         </Helmet>
         <div className={styles.triangle}>
           <p className={styles.triangleContent}>寶藏庫</p>
