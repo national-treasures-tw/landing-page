@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
+import { Helmet } from "react-helmet";
 import _ from 'lodash';
 import * as actions from '../actions/documents';
 import axios from 'axios';
@@ -108,7 +109,7 @@ class Docs extends React.Component {
 
   render() {
     const { ocrMode, isCalibrateModeOn } = this.state;
-    const { params, treasureBox } = this.props;
+    const { params, treasureBox, location } = this.props;
     const uid = params.documentId.split('@')[0];
     const docIndex = params.documentId.split('@')[1];
     const data = treasureBox.selectedDocs[uid] || {};
@@ -153,6 +154,13 @@ class Docs extends React.Component {
 
     return (
       <div className={styles.treasureBox}>
+        <Helmet>
+          <title>國家寶藏文件：{treasureBox.selectedTag}系列</title>
+          <meta name="description" content={`${treasureBox.selectedTag}文件：...${data.ocr && data.ocr[0].substr(50, 100)}...`} />
+          <meta property="og:url" content={`https://www.nationaltreasure.tw${location.pathname}`} />
+          <meta property="og:image" content={data.resizedUrls && data.resizedUrls.mediumUrl} />
+          <meta property="og:description" content={`${treasureBox.selectedTag}文件：...${data.ocr && data.ocr[0].substr(50, 100)}...`} />
+        </Helmet>
         <div className={styles.triangle}>
           <p className={styles.triangleContent}>寶藏庫</p>
         </div>

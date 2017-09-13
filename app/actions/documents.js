@@ -86,7 +86,7 @@ export const loadDocs = (tag, lastKey, isReloadingDocs) => {
       dispatch(emptyCachedDocs())
     }
     dispatch(requestDocs());
-    return axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?limit=100&tag=${tag || ''}${lastKey ? `&lastKey=${encodeURI(JSON.stringify(lastKey))}` : ''}`)
+    return axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?limit=200&tag=${tag || ''}${lastKey ? `&lastKey=${encodeURI(JSON.stringify(lastKey))}` : ''}`)
     .then((res) => {
       if (res.data && res.data.Items) {
         dispatch(receiveDocs(res.data.Items, res.data.LastEvaluatedKey));
