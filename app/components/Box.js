@@ -14,7 +14,7 @@ import mobileLogo from '../assets/mobile-menu-logo.png';
 import badge3 from '../assets/participants/badge-3.png';
 import poweredBy from '../assets/poweredby.png';
 
-const primaryTagGroup = ['中美斷交', '聯合國', '美援', '電影放映資料', '廣播問卷', '台北州（Taihoku）美國領事館資料', '台北州（Taihoku）美國領事館資料 戰後領事館重新運作'];
+const primaryTagGroup = [/*'Tue Oct 24',*/ '中美斷交', '聯合國', '美援', '農復會 (JCRR)', '一般通訊系列', '資訊中心英文教學組', '電影放映資料', '廣播問卷', '美軍顧問團邀約派遣資料', '二戰時期日本戰俘營', '台北州（Taihoku）美國領事館資料', '台北州（Taihoku）美國領事館資料 戰後領事館重新運作', '國務院統計週報'];
 
 class Box extends React.Component {
   constructor(props) {
@@ -112,7 +112,7 @@ class Box extends React.Component {
       })
     )
 
-    const galleryTitle = images[0] && `${images[0].metadata.title} Box: ${images[0].metadata.box}`;
+    const galleryTitle = (images[0] && images[0].metadata) && `${images[0].metadata.title} Box: ${images[0].metadata.box}`;
 
     const dontShowLabel = (treasureBox.filterLabel === 'All' && treasureBox.selectedTag === '美援') || treasureBox.selectedTag === '聯合國';
 
