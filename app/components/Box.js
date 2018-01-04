@@ -14,7 +14,7 @@ import mobileLogo from '../assets/mobile-menu-logo.png';
 import badge3 from '../assets/participants/badge-3.png';
 import poweredBy from '../assets/poweredby.png';
 
-const primaryTagGroup = [/*'Tue Oct 24',*/ '中美斷交', '聯合國', '美援', '農復會 (JCRR)', '一般通訊系列', '資訊中心英文教學組', '電影放映資料', '廣播問卷', '美軍顧問團邀約派遣資料', '二戰時期日本戰俘營', '台北州（Taihoku）美國領事館資料', '台北州（Taihoku）美國領事館資料 戰後領事館重新運作', '國務院統計週報'];
+const primaryTagGroup = ['中美斷交', '軍事協防', '聯合國', '美援', '農復會 (JCRR)', '一般通訊系列', '資訊中心英文教學組', '電影放映資料', '廣播問卷', '美軍顧問團邀約派遣資料', '二戰時期日本戰俘營', '美國駐華大使館', '台北州（Taihoku）美國領事館資料', '台北州（Taihoku）美國領事館資料 戰後領事館重新運作', '國務院統計週報', '經貿相關', '農業相關'];
 
 class Box extends React.Component {
   constructor(props) {
@@ -86,9 +86,10 @@ class Box extends React.Component {
     const images = treasureBox.documents;
     const truncateString = (string, number) => string.length > (number || 6) ? string.substr(0, number || 6) + '...' : string;
 
+    // .filter(img => img.userId === 'a171bbe3-edb9-45f1-874c-f5c94c529c67')
     const gallery = images.length > 0 ? images.map((image, index) => (image.resizedUrls && image.resizedUrls.smallUrl) && (
       <div key={image.uid}>
-        <Link to={`/documents/${image.uid}@${index}`}>
+        <Link to={`/documents/${image.uid}`}>
          <div className={styles.docItem}>
             <LazyLoad height={320} offset={200}>
               <img src={image.resizedUrls.smallUrl} />
@@ -96,7 +97,7 @@ class Box extends React.Component {
           </div>
         </Link>
         {/*<button onClick={() => this.handleDelete(image.uid)}>DELETE</button>
-           <button onClick={() => this.handleRotate(image.uid)}>ROTATE</button>*/}
+        <button onClick={() => this.handleRotate(image.uid)}>ROTATE</button>*/}
     </div>
     )) : null;
 

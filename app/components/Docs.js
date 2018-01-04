@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
-import { Helmet } from "react-helmet";
 import _ from 'lodash';
 import * as actions from '../actions/documents';
 import axios from 'axios';
@@ -48,12 +47,12 @@ class Docs extends React.Component {
     }
 
     if (!!treasureBox.selectedDocs[uid] && !this.props.treasureBox.selectedDocs[uid]) {
-      const tag = treasureBox.selectedDocs[uid].primaryTag;
-      const box = treasureBox.selectedDocs[uid].metadata.box;
-      this.props.selectTag(tag);
+      const { primaryTag, timestamp, userId, metadata } = treasureBox.selectedDocs[uid];
+      const box = metadata.box;
+      this.props.selectTag(primaryTag);
 
       if (treasureBox.documents.findIndex(e => e.uid === uid) === -1) {
-        this.props.hydrateDocs(uid, tag, treasureBox);
+        this.props.hydrateDocs(uid, primaryTag, timestamp, userId, treasureBox);
       }
     }
 
@@ -63,7 +62,8 @@ class Docs extends React.Component {
     const { params, treasureBox } = this.props;
     const { isCalibrateModeOn } = this.state;
     if (!isCalibrateModeOn) {
-      const docIndex = params.documentId.split('@')[1];
+      const uid = params.documentId.split('@')[0];
+      const docIndex = treasureBox.documents.findIndex(doc => doc.uid === uid);
       let lastDocUid;
       if (docIndex !== '0') {
         lastDocUid = treasureBox.documents[+docIndex - 1] && treasureBox.documents[+docIndex - 1].uid;
@@ -71,9 +71,9 @@ class Docs extends React.Component {
 
       const nextDocUid = treasureBox.documents[+docIndex + 1] && treasureBox.documents[+docIndex + 1].uid;
       if (event.key === 'ArrowRight' && nextDocUid) {
-        this.props.history.push(`/documents/${nextDocUid}@${+docIndex + 1}`)
+        this.props.history.push(`/documents/${nextDocUid}`)
       } else if (event.key === 'ArrowLeft' && lastDocUid) {
-        this.props.history.push(`/documents/${lastDocUid}@${+docIndex - 1}`)
+        this.props.history.push(`/documents/${lastDocUid}`)
       }
     }
   }
@@ -111,7 +111,7 @@ class Docs extends React.Component {
     const { ocrMode, isCalibrateModeOn } = this.state;
     const { params, treasureBox, location } = this.props;
     const uid = params.documentId.split('@')[0];
-    const docIndex = params.documentId.split('@')[1];
+    const docIndex = treasureBox.documents.findIndex(doc => doc.uid === uid);
     const data = treasureBox.selectedDocs[uid] || {};
     let lastDocUid;
     if (docIndex !== '0') {
@@ -154,17 +154,6 @@ class Docs extends React.Component {
 
     return (
       <div className={styles.treasureBox}>
-        <Helmet>
-          <title>國家寶藏文件：{treasureBox.selectedTag}系列</title>
-          <meta name="description" content={`${treasureBox.selectedTag}文件：...${data.ocr && data.ocr[0].substr(50, 100)}...`} />
-          <meta property="og:url" content={`https://www.nationaltreasure.tw${location.pathname}`} />
-          <meta property="og:image" content={data.resizedUrls && data.resizedUrls.mediumUrl} />
-          <meta property="og:description" content={`${treasureBox.selectedTag}文件：...${data.ocr && data.ocr[0].substr(50, 100)}...`} />
-          <meta property="og:site_name" content="國家寶藏"/>
-          <meta property="fb:app_id" content="1032864670166054" />
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content={`國家寶藏文件：${treasureBox.selectedTag}系列`} />
-        </Helmet>
         <div className={styles.triangle}>
           <p className={styles.triangleContent}>寶藏庫</p>
         </div>
@@ -177,15 +166,18 @@ class Docs extends React.Component {
             <div className={styles.docInfoTitle}>
               分類: {treasureBox.selectedTag}
             </div>
+            <div className={styles.docInfoSubTitle}>
+              {data.docId  && <a href={`https://catalog.archives.gov/id/${data.docId}`} target="_blank">{data.metadata && `${data.metadata.title} box: ${data.metadata.box}`}</a>}
+            </div>
             <div className={styles.docPageControl}>
             {lastDocUid &&
-                <Link to={`/documents/${lastDocUid}@${+docIndex - 1}`}>
+                <Link to={`/documents/${lastDocUid}`}>
                   <button className={styles.lowerRightButton}><FontAwesome name='chevron-left' /> 上一張</button>
                 </Link>
               }
             <Link to="/treasure"><button className={styles.lowerRightButton}><FontAwesome name='chevron-up' /> 回上層</button></Link>
               {nextDocUid &&
-                <Link to={`/documents/${nextDocUid}@${+docIndex + 1}`}>
+                <Link to={`/documents/${nextDocUid}`}>
                   <button className={styles.lowerRightButton}>下一張 <FontAwesome name='chevron-right' /></button>
                 </Link>
               }
@@ -202,7 +194,7 @@ class Docs extends React.Component {
               <img src={data.resizedUrls && data.resizedUrls.largeUrl} className={styles.docImg} />
               <div className={styles.lowerRightButtonGroup}>
                 <a href={data.originalUrl} download> <button className={styles.lowerRightButton}><FontAwesome name='download' /> 下載圖檔</button> </a>
-                <button className={styles.lowerRightButton}><FontAwesome name='heart' /> 0</button>
+                <Link to="/participants/supporters#toHere"> <button className={styles.lowerRightButton}><FontAwesome name='gift' /> 支持國家寶藏</button> </Link>
               </div>
             </div>
             <div className={styles.docDataBox}>
@@ -245,10 +237,10 @@ class Docs extends React.Component {
                   </div>
                 </div>
               </div>
-              {isCalibrateModeOn ? 
-                <textarea 
-                  value={ocrMode === 'En' ? data.ocr[0] : data.translate[0]} 
-                  className={styles.calibrateTextArea} 
+              {isCalibrateModeOn ?
+                <textarea
+                  value={ocrMode === 'En' ? data.ocr[0] : data.translate[0]}
+                  className={styles.calibrateTextArea}
                   onChange={this.handleCalibrate}
                 /> : (
                 <div className={styles.ocrBox}>

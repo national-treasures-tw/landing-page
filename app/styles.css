@@ -642,9 +642,9 @@ input[type=email] {
 
 .appSection {
   display: flex;
-  color: white; 
-  margin-left: 23%; 
-  margin-top: 36px; 
+  color: white;
+  margin-left: 23%;
+  margin-top: 36px;
   padding-bottom: 56px;
 }
 
@@ -1685,8 +1685,8 @@ input[type=email] {
     padding-right: 8px;
   }
 
-  .lowerRightButtonGroup {
-    display: none;
+  .lowerRightButton {
+    margin-bottom: 0;
   }
 
   .calibrateControls {
@@ -1707,16 +1707,27 @@ input[type=email] {
     opacity: 0.5;
   }
 
-  .mobileNoCalibrateMsg { 
+  .mobileNoCalibrateMsg {
     position: relative;
     top: -155px;
   }
-  
+
+  .docInfoTitle {
+    font-size: 18px;
+    line-height: 21px;
+    margin-bottom: 5px;
+  }
+
+  .docInfoSubTitle {
+    font-size: 10px;
+    line-height: 15px;
+  }
+
 }
 
 /* phone 5 protrait */
 @media (max-width: 321px) {
-  
+
   .triangle {
     margin-left: 0;
   }
@@ -1790,7 +1801,7 @@ input[type=email] {
   .sectionLeft {
     margin-top: 240px;
     left: -130px;
-  } 
+  }
 
   .usaImg {
     width: 431px;
@@ -1925,5 +1936,3 @@ input[type=email] {
     margin-left: 20%;
   }
 }
-
-

@@ -47,24 +47,18 @@ export const selectFilter = (filter, filterLabel) => ({
   filterLabel
 });
 
-export const hydrateDocs = (uid, tag, treasureBox) => {
-  const getDocs = (tag, docs, lastKey, dispatch) => axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?limit=800&tag=${tag || ''}${lastKey ? `&lastKey=${encodeURI(JSON.stringify(lastKey))}` : ''}`)
+export const hydrateDocs = (uid, tag, timestamp, userId, treasureBox) => {
+  const getDocs = (tag, docs, lastKey, timestamp, userId, dispatch) => axios.get(`https://76k76zdzzl.execute-api.us-east-1.amazonaws.com/stage/upload?limit=1000&tag=${tag || ''}${lastKey ? `&lastKey=${encodeURI(JSON.stringify(lastKey))}` : ''}&timestamp=${timestamp}&userId=${userId}`)
     .then((res) => {
       if (res.data && res.data.Items) {
-        const newDocs = [...docs, ...res.data.Items];
         const newLastkey = res.data.LastEvaluatedKey;
-
-        if (res.data.Items.findIndex(e => e.uid === uid) === -1) {
-          return getDocs(tag, newDocs, newLastkey, dispatch);
-        } else {
-          const doc = treasureBox.selectedDocs[uid];
-          const box = doc.metadata.box;
-          const USAidBoxes = ['93-94', '95-96', '21-22', '245-246'];
-          const fullLabel = `${doc.metadata.title} Box: ${box}`
-          dispatch(receiveDocs(newDocs, newLastkey));
-          if (USAidBoxes.indexOf(box) !== -1) {
-            dispatch(selectFilter(box, fullLabel));
-          }
+        const doc = treasureBox.selectedDocs[uid];
+        const box = doc.metadata.box;
+        const USAidBoxes = ['93-94', '95-96', '21-22', '245-246'];
+        const fullLabel = `${doc.metadata.title} Box: ${box}`
+        dispatch(receiveDocs(res.data.Items, newLastkey));
+        if (USAidBoxes.indexOf(box) !== -1) {
+          dispatch(selectFilter(box, fullLabel));
         }
       } else {
         dispatch(loadDocsError('No documents received'))
@@ -75,7 +69,7 @@ export const hydrateDocs = (uid, tag, treasureBox) => {
   return (dispatch) => {
     dispatch(requestDocs());
 
-    return getDocs(tag, [], null, dispatch);
+    return getDocs(tag, [], null, timestamp, userId, dispatch);
   }
 }
 
