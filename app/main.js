@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import Landing from './components/Landing';
+import LandingEN from './components/LandingEN';
 import Docs from './components/Docs';
 import Participants from './components/Participants';
 import Volunteer from './components/Volunteer';
@@ -21,6 +22,7 @@ class App extends React.Component {
       <Provider store={store}>
         <Router history={isProduction ? browserHistory : hashHistory} render={applyRouterMiddleware(useScroll())}>
           <Route path="/" component={Landing} />
+          <Route path="/en" component={LandingEN} />
           <Route path="/documents/:documentId" component={Docs} />
           <Route path="/participants" component={Participants} >
             <IndexRoute component={Volunteer} />
@@ -29,6 +31,7 @@ class App extends React.Component {
             <Route path="supporters" component={Support} />
           </Route>
           <Route path="/treasure" component={Box} />
+          <Route path="/treasure/en" component={Box} />
         </Router>
       </Provider>
     );

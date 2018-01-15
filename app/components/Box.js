@@ -25,7 +25,8 @@ class Box extends React.Component {
       isDebugging: false,
       scrollTop: 0,
       showDropdown: false,
-      showSecondaryDropdown: false
+      showSecondaryDropdown: false,
+      searchQuery: ''
     };
   }
 
@@ -54,6 +55,14 @@ class Box extends React.Component {
     const { images } = this.state;
     const updatedImages = images.map(e => e.uid === uid ? { ...e, resizedUrls: { ...e.resizedUrls, toBeRotatedBy: 90 + (e.resizedUrls.toBeRotatedBy || 0)}} : e );
     // this.setState({ images: updatedImages });
+  }
+
+  handleSearchQueryChange = (event) => {
+    this.setState({ searchQuery: event.target.value });
+  }
+
+  handleSearch = () => {
+    this.props.searchDocs(this.state.searchQuery);
   }
 
   handleDropdown = () => {
@@ -154,6 +163,8 @@ class Box extends React.Component {
               </div>
               )
             }
+            <input placeholder="Search Query..." className={styles.searchBar} onChange={this.handleSearchQueryChange} />
+            <button className={styles.searchButton} onClick={this.handleSearch}>Search</button>
           </div>
           {!dontShowLabel && <p className={styles.galleryTitle}>{galleryTitle} </p>}
           <div className={styles.treasureContainer}>

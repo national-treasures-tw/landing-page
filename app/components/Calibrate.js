@@ -22,7 +22,7 @@ export default class Support extends React.Component {
         </p>
         <div className={styles.bodyCalibrateInfo}>
           <img src={screenshot} width={750} height={600} className={styles.bodyCalibrateImg} />
-          <Link to="/treasure"><button className={styles.calibrateButton}>開始鑑定</button></Link>
+          <Link to="/treasure/zh"><button className={styles.calibrateButton}>開始鑑定</button></Link>
         </div>
       </div>
     );

@@ -367,6 +367,14 @@ input[type=email] {
   line-height: 24px;
 }
 
+.footerLink {
+  color: white !important;
+}
+
+.footerLink:hover {
+  opacity: 0.6;
+}
+
 
 /* Participants Page */
 
@@ -1129,6 +1137,21 @@ input[type=email] {
 
 /* End Support Page */
 
+/* Search Bar in Treasure Box */
+
+.searchBar {
+  composes: donateInput;
+  margin-left: 20px;
+}
+
+.searchButton {
+  composes: donateButton;
+  height: 36px;
+}
+
+/* End Search Bar */
+
+
 /* Calibrate Page */
 
 .bodyCalibrateInfo {
@@ -1620,6 +1643,17 @@ input[type=email] {
   .secondCategoryDropdown {
     margin-left: 0;
     width: 80%;
+  }
+
+  .searchBar {
+    margin-left: 0px;
+    margin-top: 8px;
+  }
+
+  .searchButton {
+    width: 62px;
+    font-size: 14px;
+    height: 35px;
   }
 
   /* Phone Doc Page */

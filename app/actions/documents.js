@@ -92,6 +92,38 @@ export const loadDocs = (tag, lastKey, isReloadingDocs) => {
   }
 }
 
+export const searchDocs = (query) => {
+  return (dispatch) => {
+    // requesting docs...
+    dispatch(emptyCachedDocs())
+    dispatch(requestDocs());
+    return axios({
+      method: 'POST',
+      url:'https://search-nationaltreasure-qx7vvzfgy3civ5j6nsw3eoc4hy.us-east-1.es.amazonaws.com/documents/document/_search?size=1000',
+      data: {
+        query: {
+          bool: {
+            should: [
+              { match: { ocr: query } },
+              { match: { translate: query } },
+              { match: { 'metadata.title': query }}
+            ]
+          }
+        }
+      }
+    })
+    .then((res) => {
+      if (res.data && res.data.hits.hits) {
+        const docs = res.data.hits.hits.map(result => result._source);
+        dispatch(receiveDocs(docs));
+      } else {
+        dispatch(loadDocsError('No documents received'))
+      }
+    })
+    .catch(err => dispatch(loadDocsError(err.message)))
+  }
+}
+
 export const getSingleDoc = (uid) => {
   return (dispatch) => {
     // requesting docs...

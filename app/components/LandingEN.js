@@ -14,7 +14,7 @@ import poweredBy from '../assets/poweredby.png';
 import usaImg from '../assets/location-usa.png';
 import { easing } from '../helpers/math';
 
-export default class Landing extends React.Component {
+export default class LandingEN extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,73 +47,72 @@ export default class Landing extends React.Component {
         <div className={styles.navBox}>
           <Link to="/participants/volunteers">
             <div className={styles.navBoxItem} >
-              參與尋寶
+              Volunteer
             </div>
           </Link>
-          <Link to="/treasure">
+          <Link to="/treasure/en">
             <div className={styles.navBoxItem} >
-              寶藏庫
+              Treasure
             </div>
           </Link>
           <a href="https://www.facebook.com/twnationaltreasure/" target="_blank">
             <div className={styles.navBoxItem} >
-              故事
+              {"Stories"}
             </div>
           </a>
           <a href="https://m.me/twnationaltreasure/" target="_blank">
             <div className={styles.navBoxItem} >
-              聯絡我們
+              {"Contact"}
             </div>
           </a>
-          <Link to="/en">
+          <Link to="/">
             <div className={styles.navBoxItem} >
-              English
+              中文
             </div>
           </Link>
         </div>
         <img src={hero} className={styles.taiwan} />
         <div className={styles.sectionRight}>
-          <h4 className={styles.sectionTitle}>歷史是屬於你我、屬於每一個人的。</h4>
-          <p className={styles.sectionItem}>關於台灣過去的拼圖，散落在全世界的各個角落。我們需要把它們找出來、加以數位化，轉譯成為人人都可取用的開放資料與有意義的歷史故事；在拼湊這些線索的過程中，讓台灣人民得以認識自身的歷史與真相。</p>
+          <h4 className={styles.sectionTitle}>{"History Belongs to You and Me"}</h4>
+          <p className={styles.sectionItem}>{"In the puzzle that paints Taiwan's past, there are pieces missing all around the globe. We need to find them, digitize them and translate them into open data accessible to all. In so doing, we become an intimate part of a history that was otherwise lost."}</p>
           {!isMobile && <img src={doc1} className={styles.doc1Img} style={{ opacity: easing(0, 600, scrollTop) - 0.2, /* marginTop: 100 * (1 - easing(0, 600)) */ }} />}
         </div>
         <div className={styles.sectionLeft}>
           {!isMobile && <img src={doc2} className={styles.doc2Img} style={{ opacity: easing(461, 968, scrollTop) - 0.2 }} />}
-          <div className={styles.sectionLeftContent} >
-            <h4 className={styles.sectionTitle}>為什麼是國家寶藏？</h4>
-            <p className={styles.sectionItemNarrow} >包括英美等國家這一百多年以來對台灣社會、地理、人物所做下的情蒐紀錄，提供了台灣人在回顧自己的過去時，更豐富的材料與角度，以及不同的思維，去重新描繪台灣人曾經的生活面貌。
-  在這裡，我們希望將這些資料重新進入公眾視野內，結合每個人獨特的視角，去重新書寫出台灣人生活的故事。</p>
-            <h4 className={styles.sectionTitle2}>加入國家寶藏</h4>
-            <p className={styles.sectionItem}>國家寶藏第一站是在美國首府(D.C.)外的國家檔案局 National Archives and Records Administration - NARA II。 只要攜帶你的photo ID與手機，下載國家寶藏App，就能入館進行資料翻拍。藉由我們的App，每一位志工翻拍的文件，都會自動進入國家寶藏資料庫建檔並文字化，方便民眾檢索瀏覽。</p>
+          <div className={styles.sectionLeftContent} style={isMobile ? {} : {marginLeft: 155}}>
+            <h4 className={styles.sectionTitle}>{"Why is it National Treasure?"}</h4>
+            <p className={styles.sectionItemNarrow} >{"Over the past hundreds of years, countries such as the US and UK have been collecting intelligence records on Taiwan's societal customs, geography, and its people. These records offer a fresh perspective and distinct angle in reviewing the lives and stories that had happened on this island. This project aims to bring these documents within the sight of the public, so that everyone can forge their own stories that were never told before."}</p>
+            <h4 className={styles.sectionTitle2}>How to Join</h4>
+            <p className={styles.sectionItem}>{"The first stops of National Treasure are the UN Archive room in NYC, and the US National Archive (NARA II) in College Park, Maryland. By using our mobile App, you can easily scan and upload the documents to our database, where they will be texualized, indexed and open to use by all. "}</p>
             <div className={styles.buttonGroup} >
-              <Link to="/participants/volunteers"> <button className={styles.btnBrownLeft} >知道更多</button> </Link>
-              <a href="https://www.facebook.com/twnationaltreasure/" target="_blank"> <button className={styles.btnBrown} >追蹤動態</button> </a>
-              <Link to="/participants/supporters"> <button className={styles.btnBrownRight} >後勤貢獻</button> </Link>
+              <Link to="/participants/volunteers"> <button className={styles.btnBrownLeft} >Know More</button> </Link>
+              <a href="https://www.facebook.com/twnationaltreasure/" target="_blank"> <button className={styles.btnBrown} >Follow Us</button> </a>
+              <Link to="/participants/supporters"> <button className={styles.btnBrownRight} >Contribute</button> </Link>
             </div>
           </div>
         </div>
-        <div className={styles.sectionLeftUSA}>
+        <div className={styles.sectionLeftUSA} style={isMobile ? {} : {top: 2047}}>
           <img src={usaImg} className={styles.usaImg} />
           <div className={styles.sectionLeftContent2} >
               <div className={styles.innerContent} >
-              <h4 className={styles.sectionTitleUSA}>目前開團的尋寶點</h4>
+              <h4 className={styles.sectionTitleUSA}>Our Stations</h4>
               <p className={styles.sectionItemUSA} >
                 - National Archives and Records Administration (Washington D.C.) <br />
                 - United Nations Archives (New York City) <br />
-                - (準備中）Hoover Institution, Library & Archives (Stanford University) <br />
+                - (Pending）Hoover Institution, Library & Archives (Stanford University) <br />
               </p>
               <div className={styles.buttonGroup} >
-                <a href="https://m.me/twnationaltreasure/" target="_blank"> <button className={styles.btnBrownInfo}>提供尋寶情報</button> </a>
+                <a href="https://m.me/twnationaltreasure/" target="_blank"> <button className={styles.btnBrownInfo}>Give Us Tips</button> </a>
               </div>
-              <h4 className={styles.sectionTitleUSA}>近期活動</h4>
+              <h4 className={styles.sectionTitleUSA}>Recent Activities</h4>
               <a href="https://www.facebook.com/pg/twnationaltreasure/events" target="_blank">
                 <p className={styles.sectionItemGroups} >
-                  12/12 UN 採寶團 >> JOIN!
+                  12/12 UN Trip >> JOIN!
                 </p>
               </a>
               <a href="https://www.facebook.com/pg/twnationaltreasure/events" target="_blank">
                 <p className={styles.sectionItemGroups} >
-                  12/21 NARA 採寶團 >> JOIN!
+                  12/21 NARA Trip >> JOIN!
                 </p>
               </a>
               </div>
